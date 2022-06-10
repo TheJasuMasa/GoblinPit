@@ -1,0 +1,11 @@
+/**git branches**/
+warboss - primary branch
+
+/**server port**/
+localhost:6969
+
+/**start server**/ 
+npx nodemon servah.js
+
+/**compile code**/
+npm run build

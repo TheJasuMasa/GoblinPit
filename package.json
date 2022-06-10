@@ -1,0 +1,26 @@
+{
+  "name": "gprb",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "echo Entering the goblin pit...&& npx nodemon servah.js",
+    "build": "echo Da smartuns iz mashin ya code togeva! && webpack",
+    "dev": "echo Da smartuns iz gawpin ya grotty code! && webpack --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.1",
+    "math": "^0.0.3",
+    "math.js": "^1.1.46",
+    "mathjs": "^10.6.1",
+    "phaser": "^3.55.2",
+    "webpack": "^5.73.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16",
+    "webpack-cli": "^4.9.2"
+  }
+}
