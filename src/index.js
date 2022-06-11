@@ -26,6 +26,7 @@ function preload() {
 
 function create() {
   this.scene.start("titleScreen")
+  
 }
 
 function update() {

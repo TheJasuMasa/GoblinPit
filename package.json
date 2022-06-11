@@ -17,6 +17,7 @@
     "math.js": "^1.1.46",
     "mathjs": "^10.6.1",
     "phaser": "^3.55.2",
+    "phaser3-rex-plugins": "^1.1.70",
     "webpack": "^5.73.0"
   },
   "devDependencies": {
