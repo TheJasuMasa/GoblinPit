@@ -10,8 +10,9 @@ const path = require("path");
 
 const index = path.join(__dirname, "fings", "index.html");
 const code = path.join(__dirname, "dist", "main.js");
+const pageCode = path.join(__dirname, "fings", "pageCode.js");
 
-const RNB = getAssets("RNB.mp3")
+const RNB = getAssets("RNB.mp3");
 const skybox = getAssets("skybox800x600.png");
 const cloud1 = getAssets("cloud1.png");
 const dahpit = getAssets("dahpit.png");
@@ -75,6 +76,9 @@ app.get("/assetz/RNB.mp3", (req, res) => {
   res.sendFile(RNB);
 });
 
+app.get("/pageCode.js", (req, res) => {
+  res.sendFile(pageCode);
+});
 
 app.listen(port, (req, res) => {
   console.log("Welcome to da Goblin pit, ye grotty lout!");
