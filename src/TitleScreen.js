@@ -1,4 +1,5 @@
 import { ASSET_PATH } from "./pathDefs";
+import { RandBattle } from "./RandBattle";
 import math from 'mathjs';
 
 export class TitleScreen extends Phaser.Scene {
@@ -9,6 +10,8 @@ export class TitleScreen extends Phaser.Scene {
     }
     
     panBegin = false
+
+    
 
     moveImage(image, speedX, speedY){
         image.x += speedX
@@ -33,6 +36,8 @@ export class TitleScreen extends Phaser.Scene {
         this.load.image("bHead", `${ASSET_PATH}/bHead.png`);
         this.load.image("jHead", `${ASSET_PATH}/jHead.png`);
         this.load.image("onlookingBois", `${ASSET_PATH}/onlookingBois.png`);
+        this.load.image("enterButton", `${ASSET_PATH}/enterButton.png`);
+        this.load.image("selector", `${ASSET_PATH}/selector.png`);
         
     }
 
@@ -48,6 +53,9 @@ export class TitleScreen extends Phaser.Scene {
         this.jHead = this.add.image(800, 1400, "jHead");
         this.bHead = this.add.image(100, 2200, "bHead");
         this.onlookingBois = this.add.image(400,1700,"onlookingBois");
+        this.enterButton = this.add.image(400,1700, "enterButton");
+        this.selector = this.add.image(400,1750, "selector");
+
 
         const tween = this.tweens.add({
             targets: this.onlookingBois,
@@ -98,30 +106,34 @@ export class TitleScreen extends Phaser.Scene {
 
         setTimeout(() => {this.panBegin=true},10000) // sets value to true in order to pan screen downward from title 
 
-        const particles = this.add.particles()
+        const particles = this.add.particles() // DO BLOOD PARTICLES LATER
+        
     }
 
 
     update(){
+          // Moves dah pwetty widdle clouds
           this.moveImage(this.cloud1, .51,0)
           this.moveImage(this.cloud2, .51,0)
           this.moveImage(this.cloud3, .51,0)
           this.moveImage(this.cloud4, .51,0)
 
+          // Too lazy to change the image size
           this.jHead.setScale(.5)
           this.bHead.setScale(.5)
         
+          // Throws and rotates our heads
           this.moveImage(this.jHead, -3, -7)
           this.jHead.rotation -= 0.12
           this.moveImage(this.bHead, 2, -7.25)
           this.bHead.rotation += 0.12
-
           
-
-          this.cameras.main.scrollY < 1200 ? this.panBegin ? this.cameras.main.scrollY+=1 : '': ''; // pans screen downward when true
+          // Pans the screen downward when true
+          this.cameras.main.scrollY < 1200 ? this.panBegin ? this.cameras.main.scrollY+=1 : '': ''; 
           
-       
-       
+          // Starts the next scene by pressing the Enter key, scene.start will also shutdown the current scene
+          // use scene.launch in order to run scenes paralell
+          if (this.input.keyboard.addKey('ENTER').isDown){this.scene.start('RandBattle')}
         
         
         

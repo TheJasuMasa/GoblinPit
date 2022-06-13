@@ -2,6 +2,7 @@ import Phaser from "phaser";
 import { ASSET_PATH } from "./pathDefs";
 import { debugScene } from "./debug";
 import { TitleScreen } from "./TitleScreen";
+import { RandBattle } from "./RandBattle";
 
 const config = {
   type: Phaser.AUTO,
@@ -13,7 +14,7 @@ const config = {
       create: create,
       update: update,
     },
-    TitleScreen,
+    TitleScreen,RandBattle
   ],
 };
 

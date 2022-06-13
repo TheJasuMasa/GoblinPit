@@ -17,7 +17,11 @@ const cloud1 = getAssets("cloud1.png");
 const dahpit = getAssets("dahpit.png");
 const jHead = getAssets("jHead.png");
 const bHead = getAssets("bHead.png");
-const onlookingBois = getAssets("onlookingBois.png")
+const onlookingBois = getAssets("onlookingBois.png");
+const enterButton = getAssets("enterButton.png");
+const selector = getAssets("selector.png");
+const testArena = getAssets("testArena.png");
+const spleegakSheet = getAssets("spleegakSheet.png");
 
 // app.use(express.static("fings", options));
 
@@ -51,6 +55,21 @@ app.get("/assetz/onlookingBois.png", (req, res) => {
   res.sendFile(onlookingBois);
 });
 
+app.get("/assetz/enterButton.png", (req, res) => {
+  res.sendFile(enterButton);
+});
+
+app.get("/assetz/selector.png", (req, res) => {
+  res.sendFile(selector);
+});
+
+app.get("/assetz/testArena.png", (req, res) => {
+  res.sendFile(testArena);
+});
+
+app.get("/assetz/spleegakSheet.png", (req, res) => {
+  res.sendFile(spleegakSheet);
+});
 
 app.get("/assetz/RNB.mp3", (req, res) => {
   res.sendFile(RNB);
