@@ -1,0 +1,52 @@
+[
+  {
+    "name": "cloud1",
+    "type": "img",
+    "filename": "cloud1.png"
+  },
+  {
+    "name": "sky",
+    "type": "img",
+    "filename": "skybox800x600.png"
+  },
+  {
+    "name": "cloud1",
+    "type": "img",
+    "filename": "cloud1.png"
+  },
+  {
+    "name": "dahpit",
+    "type": "img",
+    "filename": "dahpit.png"
+  },
+  {
+    "name": "bHead",
+    "type": "img",
+    "filename": "bHead.png"
+  },
+  {
+    "name": "jHead",
+    "type": "img",
+    "filename": "jHead.png"
+  },
+  {
+    "name": "onlookingBois",
+    "type": "img",
+    "filename": "onlookingBois.png"
+  },
+  {
+    "name": "enterButton",
+    "type": "img",
+    "filename": "enterButton.png"
+  },
+  {
+    "name": "selector",
+    "type": "img",
+    "filename": "selector.png"
+  },
+  {
+    "name": "RNB",
+    "type": "audio",
+    "filename": "RNB.mp3"
+  }
+]

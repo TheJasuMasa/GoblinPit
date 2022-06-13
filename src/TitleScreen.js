@@ -1,6 +1,8 @@
 import { ASSET_PATH } from "./pathDefs";
 import { RandBattle } from "./RandBattle";
-import math from "mathjs";
+
+import { sceneObjectPreLoader } from "./utils/sceneObjectLoader";
+import titleScreen from "./sceneDefs/titleScreen.json";
 
 export class TitleScreen extends Phaser.Scene {
   constructor() {
@@ -23,15 +25,8 @@ export class TitleScreen extends Phaser.Scene {
   }
 
   preload() {
-    this.load.audio("RNB", `${ASSET_PATH}/RNB.mp3`);
-    this.load.image("sky", `${ASSET_PATH}/skybox800x600.png`);
-    this.load.image("cloud1", `${ASSET_PATH}/cloud1.png`);
-    this.load.image("dahpit", `${ASSET_PATH}/dahpit.png`);
-    this.load.image("bHead", `${ASSET_PATH}/bHead.png`);
-    this.load.image("jHead", `${ASSET_PATH}/jHead.png`);
-    this.load.image("onlookingBois", `${ASSET_PATH}/onlookingBois.png`);
-    this.load.image("enterButton", `${ASSET_PATH}/enterButton.png`);
-    this.load.image("selector", `${ASSET_PATH}/selector.png`);
+    const loader = this.load;
+    sceneObjectPreLoader(titleScreen, loader);
   }
 
   create() {
