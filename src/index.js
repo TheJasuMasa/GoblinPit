@@ -8,32 +8,31 @@ const config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
+  parent: "daPit",
+  dom: {
+    createContainer: true,
+  },
   scene: [
     {
       preload: preload,
       create: create,
       update: update,
     },
-    TitleScreen,RandBattle
+    TitleScreen,
+    RandBattle,
   ],
 };
-
 
 const game = new Phaser.Game(config);
 const bootGame = new debugScene();
 
-function preload() {
-}
+function preload() {}
 
 function create() {
-  this.scene.start("titleScreen")
-  
+  this.scene.start("titleScreen");
 }
 
-function update() {
-  
-}
-
+function update() {}
 
 // function update() {}
 // import { Goblin } from "./wutGobbosIz";
