@@ -1,6 +1,3 @@
-import { ASSET_PATH } from "./pathDefs";
-import { RandBattle } from "./RandBattle";
-
 import { sceneObjectPreLoader } from "./utils/sceneObjectLoader";
 import titleScreen from "./sceneDefs/titleScreen.json";
 

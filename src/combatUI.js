@@ -1,4 +1,4 @@
-import { ASSET_PATH, MAP_PATH } from "./pathDefs";
+import { PATHS } from "./pathDefs";
 import { Goblin } from "./wutGobbosIz";
 
 export class combatUI extends Phaser.Scene {
@@ -16,7 +16,7 @@ export class combatUI extends Phaser.Scene {
   preload() {
     this.load.image(
       "combatTestButtonBite",
-      `${ASSET_PATH}/combatTestButtonBite.png`
+      `${PATHS.UI}/combatTestButtonBite.png`
     );
   }
 

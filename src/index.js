@@ -1,5 +1,4 @@
 import Phaser from "phaser";
-import { ASSET_PATH } from "./pathDefs";
 import { debugScene } from "./debug";
 import { TitleScreen } from "./TitleScreen";
 import { RandBattle } from "./RandBattle";
