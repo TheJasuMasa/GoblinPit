@@ -128,6 +128,7 @@ export class TitleScreen extends Phaser.Scene {
     // Starts the next scene by pressing the Enter key, scene.start will also shutdown the current scene
     // use scene.launch in order to run scenes paralell
     if (this.input.keyboard.addKey("ENTER").isDown) {
+      this.RNB.stop()
       this.scene.start("RandBattle");
     }
   }

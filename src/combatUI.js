@@ -9,6 +9,7 @@ export class combatUI extends Phaser.Scene {
   bite(attacker, defender) {
     let damageDone = attacker.stats.str - defender.stats.tgh + 1;
     defender.stats.hp -= damageDone;
+    console.log("CHOMP")
     console.log(damageDone);
     console.log(defender.stats.hp);
   }
@@ -18,9 +19,11 @@ export class combatUI extends Phaser.Scene {
       "combatTestButtonBite",
       `${PATHS.UI}/combatTestButtonBite.png`
     );
+    this.load.audio('mysterySound', `${PATHS.sfx}/wetFart1.wav`)
   }
 
   create() {
+    this.WF = this.sound.add("mysterySound");
     this.testButtonImage = this.add
       .image(300, 550, "combatTestButtonBite")
       .setInteractive();
@@ -42,14 +45,13 @@ export class combatUI extends Phaser.Scene {
     //     console.log('why')
     //    this.bite(this.chung,this.grung)
     // })
-    console.log(this);
     this.testButtonImage.on(
       "pointerdown",
-      this.bite(this.chung, this.grung),
-      this
+      () => this.bite(this.chung, this.grung)
     );
 
-    this.bite(this.chung, this.grung);
+    this.testButtonImage.on("pointerdown", () => this.WF.play())
+    // this.bite(this.chung, this.grung);
   }
 
   update() {

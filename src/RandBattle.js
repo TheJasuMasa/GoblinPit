@@ -33,9 +33,14 @@ export class RandBattle extends Phaser.Scene {
       `${PATHS.sprites}/testGobboSpritesheet.png`,
       { frameWidth: 33, frameHeight: 33, endFrame: 2, margin: 1, spacing: 1 }
     );
+
+    //Preloads secret fun stuff
+    this.load.audio('GT', `${PATHS.music}/GT.mp3`)
   }
 
   create() {
+    this.GT = this.sound.add("GT");
+    this.GT.play();
     //// ----- TILES/TERRAIN ------ ////
     // Constructs the map
     this.map = this.make.tilemap({
