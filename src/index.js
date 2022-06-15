@@ -3,12 +3,14 @@ import { ASSET_PATH } from "./pathDefs";
 import { debugScene } from "./debug";
 import { TitleScreen } from "./TitleScreen";
 import { RandBattle } from "./RandBattle";
+import { combatUI } from "./combatUI";
 
 const config = {
   type: Phaser.AUTO,
   width: 800,
   height: 600,
   parent: "daPit",
+  pixelArt: true,
   dom: {
     createContainer: true,
   },
@@ -20,6 +22,7 @@ const config = {
     },
     TitleScreen,
     RandBattle,
+    combatUI
   ],
 };
 
