@@ -1,4 +1,4 @@
-import {Goblin} from './wutGobbosIz.js'
+import {Goblin} from '../wutGobbosIz.js'
 
 
 export class debugScene extends Phaser.Scene {

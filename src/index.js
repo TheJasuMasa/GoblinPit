@@ -1,8 +1,8 @@
 import Phaser from "phaser";
-import { debugScene } from "./debug";
-import { TitleScreen } from "./TitleScreen";
-import { RandBattle } from "./RandBattle";
-import { combatUI } from "./combatUI";
+import { debugScene } from "./scenes/debug";
+import { TitleScreen } from "./scenes/TitleScreen";
+import { RandBattle } from "./scenes/RandBattle";
+import { combatUI } from "./scenes/combatUI";
 
 const config = {
   type: Phaser.AUTO,
@@ -21,7 +21,7 @@ const config = {
     },
     TitleScreen,
     RandBattle,
-    combatUI
+    combatUI,
   ],
 };
 

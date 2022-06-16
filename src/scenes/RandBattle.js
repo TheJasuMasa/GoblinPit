@@ -1,21 +1,19 @@
-import { PATHS } from "./pathDefs";
-import testMap from "./maps/testMap.json";
+import { PATHS } from "../pathDefs";
+import testMap from "../maps/testMap.json";
 import { combatUI } from "./combatUI";
 
 export class RandBattle extends Phaser.Scene {
   constructor(currentMap) {
     super("RandBattle");
-    this.currentMap = currentMap
-    
+    this.currentMap = currentMap;
   }
-  
 
   preload() {
     // Preloads the tileset pngs
     this.load.image("PreTiles", `${PATHS.tiles}/tileBoi.png`);
     this.load.image("PreWalls", `${PATHS.tiles}/wallBoi.png`);
     this.load.image("tileMarker", `${PATHS.UI}/tileMarkerNew2.png`);
-    
+
     // Preloads the map.json created in Tiled
     this.load.tilemapTiledJSON("testMap", testMap);
 
@@ -31,9 +29,9 @@ export class RandBattle extends Phaser.Scene {
         spacing: 2,
       }
     );
- 
+
     //Preloads secret fun stuff
-    this.load.audio('GT', `${PATHS.music}/GT.mp3`)
+    this.load.audio("GT", `${PATHS.music}/GT.mp3`);
   }
 
   create() {
@@ -54,10 +52,9 @@ export class RandBattle extends Phaser.Scene {
     this.layer2 = this.currentMap.createLayer("wallLayer", [tileset2], 0, 0);
     // Increases the vision level
     this.cameras.main.zoom = 2;
-    
+
     //// ----- TILE MARKER ----- ////
     this.tileMarker = this.add.image(0, 0, "tileMarker");
-
 
     // Spleegak Rocking out
     let config = {
@@ -74,7 +71,6 @@ export class RandBattle extends Phaser.Scene {
 
     // this.add.sprite(350, 265, "spleegakSheet").play("spleegakSheetAnim");
     this.scene.launch("combatUI");
-    
   }
 
   update() {
@@ -89,12 +85,13 @@ export class RandBattle extends Phaser.Scene {
       true
     );
     // Takes tile index and translates it to global coordinates
-    var tileCoords = this.currentMap.tileToWorldXY(pointerTile.x, pointerTile.y);
+    var tileCoords = this.currentMap.tileToWorldXY(
+      pointerTile.x,
+      pointerTile.y
+    );
 
     // Updates tile marker to follow cursor positions
     this.tileMarker.x = tileCoords.x;
     this.tileMarker.y = tileCoords.y;
-
-    
   }
 }
