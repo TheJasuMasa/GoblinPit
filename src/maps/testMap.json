@@ -72,6 +72,16 @@
          "spacing":0,
          "tilecount":1,
          "tileheight":32,
+         "tiles":[
+                {
+                 "id":0,
+                 "properties":[
+                        {
+                         "name":"occupied",
+                         "type":"string",
+                         "value":"false"
+                        }]
+                }],
          "tilewidth":64
         }, 
         {
