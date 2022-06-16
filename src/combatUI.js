@@ -182,9 +182,9 @@ export class combatUI extends Phaser.Scene {
       this.input.keyboard.on('keydown-UP', () => this.moveSprite('up',this.chung))
       this.input.keyboard.on('keydown-DOWN', () => this.moveSprite('down',this.chung))
        
-        
-      
-      
+      for (let i = 0; i < 200; i++){
+        generateName('goblin')
+      }
   }
 
   update() {

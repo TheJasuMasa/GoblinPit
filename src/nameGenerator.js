@@ -9,14 +9,15 @@ export function generateName(race){
     if (race == 'goblin'){
 
         let firstNameCompounds = [
-            'Blat','Bug','Cus','Dag','Dog','Flea','Flax','Gak','Gax','Greeb','Grum','Plort',
-            'Spak','Tug','Zab','Zap','Zax','Zeeb','Zig','Zorb','Zort',];
+            'Blat','Bug','Bok','Cus','Cram','Dag','Dog','Flea','Flax','Gak','Gax','Grah','Greeb','Grum','Lok','Luk','Plort',
+            'Rub','Spak','Tug','Tuk','Zab','Zap','Zax','Zeeb','Zig','Zorb','Zort',];
         let occupationNoun = [
-            'Animal','Bag','Bug','Cat','Choppah','Cobble','Dirt','Dog','Grease','Grunge','Pee',
-            'Piss','Poo','Seat','Shovel','Table','Toilet','Turd'];
+            'Animal','Bag','Beast','Bug','Cat','Club','Choppah','Cobble','Dark','Dirt','Dog','Foot','Grease','Grunge','Pee',
+            'Piss','Poo','Pot','Seat','Shovel','Soup','Sock','Stew','Sun','Table','Toilet','Turd'];
         let rearVerb = [
-            'Bagger','Burner','Chaser','Chopper','Cleaner','Eater','Gaper','Gouger','Grabber','Grungler',
-            'Guzzler','Lover','Muncher','Polisher','Puncher','Seperator','Spreader','Shoveler'];
+            'Bagger','Banger','Burner','Chaser','Chewer','Chopper','Cleaner','Delver','Dropper','Eater',
+            'Gaper','Gazer','Gouger','Grabber','Grungler',
+            'Guzzler','Lover','Muncher','Pincher','Polisher','Puncher','Seperator','Slapper','Spreader','Shoveler'];
         let nameStructureArray = [
             'first','firstfirst','first noun','first nounverb','firstfirst noun', 'firstfirst nounverb']
         let nameStructure = nameStructureArray[getRandomIndex(nameStructureArray)]
