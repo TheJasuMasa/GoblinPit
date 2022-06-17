@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import { generateName } from "./generators/nameGenerator";
 
 export class Goblin {
-  constructor(stats, limbDefs, bodySprite, headSprite, [xPos, yPos]) {
+  constructor(stats, limbDefs, bodySprite, headSprite, [xPos, yPos], selected) {
     this.id = uuid();
     this.name = generateName("goblin");
     this.stats = stats;
@@ -12,6 +12,7 @@ export class Goblin {
     this.headSprite = headSprite;
     this.xPos = xPos;
     this.yPos = yPos;
+    this.selected = false
   }
   // List of sprite heads and body variations to staple together.
   static goblinBodyTypes = [

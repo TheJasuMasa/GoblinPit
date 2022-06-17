@@ -3,6 +3,7 @@ import { debugScene } from "./scenes/debug";
 import { TitleScreen } from "./scenes/TitleScreen";
 import { RandBattle } from "./scenes/RandBattle";
 import { combatUI } from "./scenes/combatUI";
+import OutlinePipelinePlugin from 'phaser3-rex-plugins/plugins/outlinepipeline-plugin.js';
 
 const config = {
   type: Phaser.AUTO,
@@ -23,6 +24,13 @@ const config = {
     RandBattle,
     combatUI,
   ],
+  plugins: {
+    global: [{
+        key: 'rexOutlinePipeline',
+        plugin: OutlinePipelinePlugin,
+        start: true
+    }]
+  },
 };
 
 const game = new Phaser.Game(config);

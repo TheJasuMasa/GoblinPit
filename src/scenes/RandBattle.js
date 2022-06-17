@@ -1,11 +1,11 @@
 import { PATHS } from "../pathDefs";
 import testMap from "../maps/testMap.json";
 import { combatUI } from "./combatUI";
+import EventDispatcher from "../utils/sceneDataHandle";
 
 export class RandBattle extends Phaser.Scene {
-  constructor(currentMap) {
+  constructor() {
     super("RandBattle");
-    this.currentMap = currentMap;
   }
 
   preload() {
@@ -35,6 +35,7 @@ export class RandBattle extends Phaser.Scene {
   }
 
   create() {
+
     this.GT = this.sound.add("GT");
     this.GT.play();
     //// ----- TILES/TERRAIN ------ ////
@@ -55,6 +56,7 @@ export class RandBattle extends Phaser.Scene {
 
     //// ----- TILE MARKER ----- ////
     this.tileMarker = this.add.image(0, 0, "tileMarker");
+    this.tileMarker.setDepth(1)
 
     // Spleegak Rocking out
     let config = {
@@ -70,8 +72,12 @@ export class RandBattle extends Phaser.Scene {
     this.anims.create(config);
 
     // this.add.sprite(350, 265, "spleegakSheet").play("spleegakSheetAnim");
-    this.scene.launch("combatUI");
+    this.scene.launch("combatUI",this.config);
+
+    this.registry.set('currentMap',this.currentMap)
   }
+
+
 
   update() {
     // Returns coordinates of cursor relative to camera
@@ -84,6 +90,8 @@ export class RandBattle extends Phaser.Scene {
       worldPointer.y + 16,
       true
     );
+      
+
     // Takes tile index and translates it to global coordinates
     var tileCoords = this.currentMap.tileToWorldXY(
       pointerTile.x,
