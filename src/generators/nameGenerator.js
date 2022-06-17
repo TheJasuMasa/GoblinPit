@@ -1,176 +1,48 @@
 import { getRandomIndex } from "../utils/random";
+import { nameDefs } from "./nameDefs";
+import { makeUppercase } from "../utils/makeUppercase";
+
+//Generate a random name from an array of names
+// I use the word 'nomen' as to not conflict with the commonly used 'name' in programming
+export const generateNomen = (arr) => {
+  return arr[getRandomIndex(arr)];
+};
+
+//Generate any combination of names given an array of patterns (specified in namedefs)
+//An anthroponym refers to a single unit of a full name i.e. first name, middle name, title etc...
+export const generateFullNomen = (raceNomenDef) => {
+  const nomenPattern = generateNomen(raceNomenDef.nameStructures);
+  let fullNomen = nomenPattern.reduce((acc, i) => {
+    if (i - 1 < 0) {
+      return acc + " ";
+    } else {
+      const anthroponym = Object.values(raceNomenDef.anthroponyms[i - 1])[0];
+      return acc + generateNomen(anthroponym);
+    }
+  }, "");
+  return makeUppercase(fullNomen);
+};
 
 export function generateName(race) {
-  if (race == "goblin") {
-    let firstNameCompounds = [
-      "Blat",
-      "Bug",
-      "Bok",
-      "Cus",
-      "Cram",
-      "Dag",
-      "Dan",
-      "Dog",
-      "Flea",
-      "Flank",
-      "Flax",
-      "Flunk",
-      "Gak",
-      "Gax",
-      "Gorb",
-      "Gort",
-      "Grah",
-      "Greeb",
-      "Greeg",
-      "Grub",
-      "Grum",
-      "Lok",
-      "Luk",
-      "Plort",
-      "Rub",
-      "Sag",
-      "Spak",
-      "Splat",
-      "Tug",
-      "Tuk",
-      "Wab",
-      "Zab",
-      "Zap",
-      "Zax",
-      "Zeeb",
-      "Zig",
-      "Zorb",
-      "Zort",
-    ];
-    let occupationNoun = [
-      "Animal",
-      "Bag",
-      "Barrel",
-      "Beast",
-      "Bug",
-      "Cat",
-      "Club",
-      "Choppah",
-      "Cobble",
-      "Dark",
-      "Dirt",
-      "Dog",
-      "Foot",
-      "Grease",
-      "Grub",
-      "Grunge",
-      "Insect",
-      "Knob",
-      "Midge",
-      "Mother",
-      "Mud",
-      "Mustard",
-      "Pee",
-      "Piss",
-      "Poo",
-      "Pot",
-      "Sack",
-      "Sad",
-      "Seat",
-      "Shovel",
-      "Soup",
-      "Sock",
-      "Stew",
-      "Sun",
-      "Table",
-      "Toilet",
-      "Turd",
-    ];
-    let rearVerb = [
-      "Bagger",
-      "Banger",
-      "Bearer",
-      "Burner",
-      "Carrier",
-      "Chaser",
-      "Chewer",
-      "Chopper",
-      "Cleaner",
-      "Cobbler",
-      "Delver",
-      "Dropper",
-      "Eater",
-      "Gaper",
-      "Gazer",
-      "Gouger",
-      "Grabber",
-      "Grungler",
-      "Guzzler",
-      "Hugger",
-      "Lover",
-      "Muncher",
-      "Mutilator",
-      "Pincher",
-      "Polisher",
-      "Puncher",
-      "Sagger",
-      "Seperator",
-      "Singer",
-      "Slapper",
-      "Spreader",
-      "Shoveler",
-    ];
-    let nameStructureArray = [
-      "first",
-      "firstfirst",
-      "first noun",
-      "first nounverb",
-      "firstfirst noun",
-      "firstfirst nounverb",
-    ];
-    let nameStructure = nameStructureArray[getRandomIndex(nameStructureArray)];
-
-    if (nameStructure == "first") {
-      let name = firstNameCompounds[getRandomIndex(firstNameCompounds)];
-      console.log(name);
-      return name;
-    } else if (nameStructure == "firstfirst") {
-      let name =
-        firstNameCompounds[getRandomIndex(firstNameCompounds)] +
-        firstNameCompounds[getRandomIndex(firstNameCompounds)].toLowerCase();
-      console.log(name);
-      return name;
-    } else if (nameStructure == "firstfirst noun") {
-      let name =
-        firstNameCompounds[getRandomIndex(firstNameCompounds)] +
-        firstNameCompounds[getRandomIndex(firstNameCompounds)].toLowerCase() +
-        " " +
-        occupationNoun[getRandomIndex(occupationNoun)];
-      console.log(name);
-      return name;
-    } else if (nameStructure == "firstfirst nounverb") {
-      let name =
-        firstNameCompounds[getRandomIndex(firstNameCompounds)] +
-        firstNameCompounds[getRandomIndex(firstNameCompounds)].toLowerCase() +
-        " " +
-        occupationNoun[getRandomIndex(occupationNoun)] +
-        rearVerb[getRandomIndex(rearVerb)].toLowerCase();
-      console.log(name);
-      return name;
-    } else if (nameStructure == "first nounverb") {
-      let name =
-        firstNameCompounds[getRandomIndex(firstNameCompounds)] +
-        " " +
-        occupationNoun[getRandomIndex(occupationNoun)] +
-        rearVerb[getRandomIndex(rearVerb)].toLowerCase();
-      console.log(name);
-      return name;
-    } else if (nameStructure == "first noun") {
-      let name =
-        firstNameCompounds[getRandomIndex(firstNameCompounds)] +
-        " " +
-        occupationNoun[getRandomIndex(occupationNoun)];
-      console.log(name);
-      return name;
-    } else {
-      console.log("Failure");
-    }
+  switch (race) {
+    case "goblin":
+      return generateFullNomen(nameDefs.goblin);
+    case "ork":
+      return generateFullNomen(nameDefs.ork);
+    case "gremlin":
+      return generateFullNomen(nameDefs.gremlin);
+    case "hobgoblin":
+      return generateFullNomen(nameDefs.hobgoblin);
+    case "bugbear":
+      return generateFullNomen(nameDefs.bugbear);
+    case "ogre":
+      return generateFullNomen(nameDefs.ogre);
+    case "troll":
+      return generateFullNomen(nameDefs.troll);
   }
+
+  //----Beware all ye who enter The UnderSpaghet---//
+
   // else if (race == ork){
 
   // }
@@ -190,3 +62,52 @@ export function generateName(race) {
 
   // }
 }
+
+// let nameStructure =
+//   nameStructureArray[getRandomIndex(goblinNames.nameStructureArray)];
+
+// if (nameStructure == "first") {
+//   let name = firstNameCompounds[getRandomIndex(firstNameCompounds)];
+//   console.log(name);
+//   return name;
+// } else if (nameStructure == "firstfirst") {
+//   let name =
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)] +
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)].toLowerCase();
+//   console.log(name);
+//   return name;
+// } else if (nameStructure == "firstfirst noun") {
+//   let name =
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)] +
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)].toLowerCase() +
+//     " " +
+//     occupationNoun[getRandomIndex(occupationNoun)];
+//   console.log(name);
+//   return name;
+// } else if (nameStructure == "firstfirst nounverb") {
+//   let name =
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)] +
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)].toLowerCase() +
+//     " " +
+//     occupationNoun[getRandomIndex(occupationNoun)] +
+//     rearVerb[getRandomIndex(rearVerb)].toLowerCase();
+//   console.log(name);
+//   return name;
+// } else if (nameStructure == "first nounverb") {
+//   let name =
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)] +
+//     " " +
+//     occupationNoun[getRandomIndex(occupationNoun)] +
+//     rearVerb[getRandomIndex(rearVerb)].toLowerCase();
+//   console.log(name);
+//   return name;
+// } else if (nameStructure == "first noun") {
+//   let name =
+//     firstNameCompounds[getRandomIndex(firstNameCompounds)] +
+//     " " +
+//     occupationNoun[getRandomIndex(occupationNoun)];
+//   console.log(name);
+//   return name;
+// } else {
+//   console.log("Failure");
+// }

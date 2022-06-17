@@ -12,7 +12,7 @@ export class Goblin {
     this.headSprite = headSprite;
     this.xPos = xPos;
     this.yPos = yPos;
-    this.selected = false
+    this.selected = false;
   }
   // List of sprite heads and body variations to staple together.
   static goblinBodyTypes = [
