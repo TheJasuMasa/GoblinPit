@@ -5,6 +5,7 @@ import { RandBattle } from "./RandBattle";
 import sceneDataHandler from "../utils/sceneDataHandle";
 import OutlinePipelinePlugin from "phaser3-rex-plugins/plugins/outlinepipeline-plugin.js";
 
+
 export class combatUI extends Phaser.Scene {
   constructor() {
     super("combatUI");
@@ -18,7 +19,6 @@ export class combatUI extends Phaser.Scene {
       Goblin.goblinHeadTypes[getRandomIndex(Goblin.goblinHeadTypes)],
       [16, 6]
     );
-    console.log(this.chung);
     this.grung = new Goblin(
       { hp: 14, str: 5, skil: 2, deft: 2, tgh: 2, ap: 3 },
       "arms innit",
@@ -26,102 +26,42 @@ export class combatUI extends Phaser.Scene {
       Goblin.goblinHeadTypes[getRandomIndex(Goblin.goblinHeadTypes)],
       [17, 5]
     );
-    console.log(this.grung);
+    this.gobboArray = [this.chung, this.grung]
   }
 
   // Insanely poorly designed method of displaying where a goblin can move
   // based 1:1 on their 'ap'
   selectGobbo(target) {
+    let ap = target.stats.ap
     this.movementGrid = this.add.renderTexture(0, 0, 32, 64).setInteractive();
-    for (let i = 0; i < target.stats.ap; i++) {
-      this.movementGrid.draw(
-        this.add.image(
-          this.currentMap.tileToWorldXY(target.xPos - (i + 1), target.yPos).x,
-          this.currentMap.tileToWorldXY(target.xPos, target.yPos - (i + 1)).y,
-          "movementIndicator"
-        )
-      );
-      this.movementGrid.draw(
-        this.add.image(
-          this.currentMap.tileToWorldXY(target.xPos + (i + 1), target.yPos).x,
-          this.currentMap.tileToWorldXY(target.xPos, target.yPos + (i + 1)).y,
-          "movementIndicator"
-        )
-      );
-      this.movementGrid.draw(
-        this.add.image(
-          this.currentMap.tileToWorldXY(target.xPos + (i + 1), target.yPos).x,
-          this.currentMap.tileToWorldXY(target.xPos, target.yPos - (i + 1)).y,
-          "movementIndicator"
-        )
-      );
-      this.movementGrid.draw(
-        this.add.image(
-          this.currentMap.tileToWorldXY(target.xPos - (i + 1), target.yPos).x,
-          this.currentMap.tileToWorldXY(target.xPos, target.yPos + (i + 1)).y,
-          "movementIndicator"
-        )
-      );
-      if (i > 0) {
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos - i, target.yPos + 1).x,
-            this.currentMap.tileToWorldXY(target.xPos - i, target.yPos + 1).y,
-            "movementIndicator"
-          )
-        );
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos - i, target.yPos - 1).x,
-            this.currentMap.tileToWorldXY(target.xPos - i, target.yPos - 1).y,
-            "movementIndicator"
-          )
-        );
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos - 1, target.yPos - i).x,
-            this.currentMap.tileToWorldXY(target.xPos - 1, target.yPos - i).y,
-            "movementIndicator"
-          )
-        );
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos + 1, target.yPos - i).x,
-            this.currentMap.tileToWorldXY(target.xPos + 1, target.yPos - i).y,
-            "movementIndicator"
-          )
-        );
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos + i, target.yPos - 1).x,
-            this.currentMap.tileToWorldXY(target.xPos + i, target.yPos - 1).y,
-            "movementIndicator"
-          )
-        );
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos + 1, target.yPos + i).x,
-            this.currentMap.tileToWorldXY(target.xPos + 1, target.yPos + i).y,
-            "movementIndicator"
-          )
-        );
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos - 1, target.yPos + i).x,
-            this.currentMap.tileToWorldXY(target.xPos - 1, target.yPos + i).y,
-            "movementIndicator"
-          )
-        );
-        this.movementGrid.draw(
-          this.add.image(
-            this.currentMap.tileToWorldXY(target.xPos + i, target.yPos + 1).x,
-            this.currentMap.tileToWorldXY(target.xPos + i, target.yPos + 1).y,
-            "movementIndicator"
-          )
-        );
-      }
-    }
+      for (let i = 0; i < this.currentMap.width; i++){
+        for (let j = 0; j < this.currentMap.height; j++){
+          let tile = this.currentMap.getTileAt(i,j,true,'floorLayer')
+          let wall = this.currentMap.getTileAt(i,j,true,'wallLayer')
+                      
+            if (tile.x <= (target.xPos + ap) &&
+                tile.x >= (target.xPos - ap) &&
+                tile.y <= (target.yPos + ap) &&
+                tile.y >= (target.yPos - ap) &&
+                tile.properties.occupied != true &&
+                tile.properties.debug != true &&
+                wall.properties.occupied != true
+
+                ){
+              
+                  
+                  //console.log(this.currentMap.getTileAt(i,j,false,'floorLayer'))
+                  this.movementGrid.draw(this.add.image(this.currentMap.tileToWorldXY(i,j).x,this.currentMap.tileToWorldXY(i,j).y,"movementIndicator"))
+            }
+        }
+      }  
     target.selected = true;
+    }
+
+  getTileBelowCursor(){
+    let tile = this.currentMap.getTileAt(
+      this.pointerTile.x,this.pointerTile.y,true,)
+      return tile
   }
 
   // Clicking after selecting a gobbo will move it to the tile under the
@@ -141,15 +81,24 @@ export class combatUI extends Phaser.Scene {
     }
   }
 
+  // Keyboard movement function
   moveSprite(direction, target) {
     if (direction == "left") {
       target.xPos -= 1;
+      this.currentMap.getTileAt(target.xPos+1,target.yPos,false,'floorLayer').properties.occupied = false
+      this.currentMap.getTileAt(target.xPos+1,target.yPos,false,'floorLayer').properties.contains = 0
     } else if (direction == "right") {
       target.xPos += 1;
+      this.currentMap.getTileAt(target.xPos-1,target.yPos,false,'floorLayer').properties.occupied = false
+      this.currentMap.getTileAt(target.xPos-1,target.yPos,false,'floorLayer').properties.contains = 0
     } else if (direction == "up") {
       target.yPos -= 1;
+      this.currentMap.getTileAt(target.xPos,target.yPos+1,false,'floorLayer').properties.occupied = false
+      this.currentMap.getTileAt(target.xPos,target.yPos+1,false,'floorLayer').properties.contains = 0
     } else if (direction == "down") {
       target.yPos += 1;
+      this.currentMap.getTileAt(target.xPos,target.yPos-1,false,'floorLayer').properties.occupied = false
+      this.currentMap.getTileAt(target.xPos,target.yPos-1,false,'floorLayer').properties.contains = 0
     }
   }
 
@@ -175,6 +124,7 @@ export class combatUI extends Phaser.Scene {
     console.log(defender.stats.hp);
   }
 
+  // Function to consolidate idle animations
   animIdle(newKey, spritesheetKey) {
     let idle = {
       key: newKey,
@@ -256,7 +206,7 @@ export class combatUI extends Phaser.Scene {
     this.animIdle("gobBody2Anim", "gobBody2");
     this.animIdle("gobHead2Anim", "gobHead2");
 
-    // Actually places the sprite graphics, tileToWorldXY is used to get the xPos and yPos of any given creature instance and change to world coordinates.
+    // Actually places the sprite graphics.
     this.chungBody = this.add
       .sprite(0, 0, "gobBody1")
       .play("gobBody1Anim")
@@ -295,8 +245,8 @@ export class combatUI extends Phaser.Scene {
       .setDepth(1);
 
     // Putting Gobbo sprites in an array to put into a container.
-    this.sprites = [];
-    this.sprites.push(this.chungHead, this.chungBody);
+    this.sprites = [this.chungHead, this.chungBody];
+    
     // Containe is useful because the outline plugin will work correctly on it. And other stuff, I dunno.
     this.containerboi = this.add.container();
     this.containerboi.add(this.sprites);
@@ -304,7 +254,7 @@ export class combatUI extends Phaser.Scene {
 
     // Combines both the body and head sprites into one object called 'stitch'
     // Doesn't need an x,y set here as it's constantly updated, second set of
-    // nums is width and height of bounding box.
+    // nums is width and height of bounding box for things like selection. Is this needed?
     this.stitch = this.add.renderTexture(0, 0, 32, 42).setInteractive();
     // Draws the two sprites as one at location
     this.stitch.draw(
@@ -343,11 +293,34 @@ export class combatUI extends Phaser.Scene {
       this.plugins.get("rexOutlinePipeline").remove(this.containerboi)
     );
 
-    this.stitch.on("pointerdown", () => this.selectGobbo(this.chung));
 
-    this.input.on("pointerdown", () => this.movementConfirm(this.chung));
+    this.input.on("pointerdown", () => console.log(this.getTileBelowCursor()))
+    this.input.on("pointerdown", () => this.selectGobbo(this.getTileBelowCursor().properties.contains));
+
+    //this.input.on("pointerdown", () => this.movementConfirm(this.chung));
+
+   
 
     console.log(this.currentMap);
+  }
+
+  updateGobboPositions(){
+    // Iterates over the goblins in gobboArray and sets the tile they're at to occupied
+    // and also contains to equal the goblin itself for seeking out.
+    for (let gob = 0; gob < this.gobboArray.length; gob++){
+      this.currentMap.getTileAt(this.gobboArray[gob].xPos,this.gobboArray[gob].yPos,false,'floorLayer')
+      .properties.occupied = true
+      this.currentMap.getTileAt(this.gobboArray[gob].xPos,this.gobboArray[gob].yPos,false,'floorLayer')
+      .properties.contains = this.gobboArray[gob]
+      }
+    // Iterates over every tile in the floorLayer to see see if they're occupied
+    // if they are, then we get told which gobbo is where!
+    // for (let x = 0; x < this.currentMap.width; x++){
+    //   for (let y = 0; y < this.currentMap.height; y++){
+    //     if (this.currentMap.getTileAt(x,y,false,'floorLayer').properties.occupied==true){
+    //       console.log(this.currentMap.getTileAt(x,y,false,'floorLayer').properties.contains.name + ' iz at ' + x + ',' + y)}
+    //   }
+    // }
   }
 
   update() {
@@ -369,5 +342,18 @@ export class combatUI extends Phaser.Scene {
       this.currentMap.tileToWorldXY(this.chung.xPos, this.chung.yPos).x - 16;
     this.stitch.y =
       this.currentMap.tileToWorldXY(this.chung.xPos, this.chung.yPos).y - 36;
+
+      this.updateGobboPositions()
+
+      this.worldPointer = this.input.activePointer.positionToCamera(
+        this.cameras.main
+      );
+      this.pointerTile = this.currentMap.worldToTileXY(
+        this.worldPointer.x,
+        this.worldPointer.y + 16,
+        true
+      );
+  
+  
   }
 }

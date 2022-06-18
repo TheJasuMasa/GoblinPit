@@ -46,11 +46,15 @@ export class RandBattle extends Phaser.Scene {
       tileHeight: 32,
     });
     // Defines the tileset images and aligns their keys for the map
-    const tileset = this.currentMap.addTilesetImage("tiles", "PreTiles");
-    const tileset2 = this.currentMap.addTilesetImage("walls", "PreWalls");
+    this.tileset = this.currentMap.addTilesetImage("tiles", "PreTiles");
+    this.tileset2 = this.currentMap.addTilesetImage("walls", "PreWalls");
+    
     // Defines the layers and aligns their keys with tilesets
-    this.layer1 = this.currentMap.createLayer("floorLayer", [tileset], 0, 0);
-    this.layer2 = this.currentMap.createLayer("wallLayer", [tileset2], 0, 0);
+    this.layer1 = this.currentMap.createLayer("floorLayer", [this.tileset], 0, 0);
+    this.layer2 = this.currentMap.createLayer("wallLayer", [this.tileset2], 0, 0);
+    this.currentMap.setLayer(this.layer1)
+    
+    
     // Increases the vision level
     this.cameras.main.zoom = 2;
 
@@ -90,6 +94,7 @@ export class RandBattle extends Phaser.Scene {
       worldPointer.y + 16,
       true
     );
+    
       
 
     // Takes tile index and translates it to global coordinates
