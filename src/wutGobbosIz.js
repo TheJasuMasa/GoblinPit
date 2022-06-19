@@ -6,7 +6,7 @@ export class Goblin {
   constructor(stats, limbDefs, bodySprite, headSprite, [xPos, yPos], selected) {
     this.id = uuid();
     this.name = generateName("goblin");
-    this.stats = stats;
+    this.stats = stats
     this.limbdefs = limbDefs;
     this.bodySprite = bodySprite;
     this.headSprite = headSprite;

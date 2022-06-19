@@ -12,15 +12,48 @@ export class combatUI extends Phaser.Scene {
   }
 
   gobboDef() {
+    
     this.chung = new Goblin(
-      { hp: 12, str: 3, skil: 1, deft: 1, tgh: 4, ap: 3 },
+      {
+        currentConsciousness:100,
+        maxConsciousness:100,
+        currentFatigue:100,
+        maxFatigue:100,
+        currentMorale:100,
+        maxMorale:100,
+  
+        currentAP:3,
+        maxAP:3,
+  
+        might:3,
+        toughness:3,
+        deftness:3,
+        skill:3,
+        cleverness:3
+      },
       "arms innit",
       Goblin.goblinBodyTypes[getRandomIndex(Goblin.goblinBodyTypes)],
       Goblin.goblinHeadTypes[getRandomIndex(Goblin.goblinHeadTypes)],
       [16, 6]
     );
     this.grung = new Goblin(
-      { hp: 14, str: 5, skil: 2, deft: 2, tgh: 2, ap: 3 },
+      {
+        currentConsciousness:100,
+        maxConsciousness:100,
+        currentFatigue:100,
+        maxFatigue:100,
+        currentMorale:100,
+        maxMorale:100,
+  
+        currentAP:3,
+        maxAP:3,
+  
+        might:3,
+        toughness:3,
+        deftness:3,
+        skill:3,
+        cleverness:3
+      },
       "arms innit",
       Goblin.goblinBodyTypes[getRandomIndex(Goblin.goblinBodyTypes)],
       Goblin.goblinHeadTypes[getRandomIndex(Goblin.goblinHeadTypes)],
@@ -29,34 +62,218 @@ export class combatUI extends Phaser.Scene {
     this.gobboArray = [this.chung, this.grung]
   }
 
-  // Insanely poorly designed method of displaying where a goblin can move
-  // based 1:1 on their 'ap'
-  selectGobbo(target) {
-    let ap = target.stats.ap
-    this.movementGrid = this.add.renderTexture(0, 0, 32, 64).setInteractive();
-      for (let i = 0; i < this.currentMap.width; i++){
-        for (let j = 0; j < this.currentMap.height; j++){
-          let tile = this.currentMap.getTileAt(i,j,true,'floorLayer')
-          let wall = this.currentMap.getTileAt(i,j,true,'wallLayer')
-                      
-            if (tile.x <= (target.xPos + ap) &&
-                tile.x >= (target.xPos - ap) &&
-                tile.y <= (target.yPos + ap) &&
-                tile.y >= (target.yPos - ap) &&
-                tile.properties.occupied != true &&
-                tile.properties.debug != true &&
-                wall.properties.occupied != true
 
-                ){
-              
-                  
-                  //console.log(this.currentMap.getTileAt(i,j,false,'floorLayer'))
-                  this.movementGrid.draw(this.add.image(this.currentMap.tileToWorldXY(i,j).x,this.currentMap.tileToWorldXY(i,j).y,"movementIndicator"))
-            }
-        }
-      }  
-    target.selected = true;
+  // selectGobbo(target,i,j){
+  //   this.movementGrid = this.add.renderTexture(0, 0, 32, 64).setInteractive();
+    
+  //   let selected = target
+  //   let fillStack = []
+
+  //   fillStack.push([i,j])
+
+  //   while(fillStack.length > 0)
+  //   {
+  //     var [i,j] = fillStack.pop()
+
+  //     if (i < 0 || i >= this.currentMap.width || j < 0 || j >= this.currentMap.height) continue;
+  //     if (this.currentMap.getTileAt(i,j,true,"floorLayer").properties.movementOverlay !== false) continue;
+      
+  //     this.currentMap.getTileAt(i,j,true,"floorLayer").properties.movementOverlay = true
+      
+  //     if (this.currentMap.getTileAt(i,j,true,"floorLayer").properties.movementOverlay == true){
+  //         this.add.image(this.currentMap.tileToWorldXY(i,j).x,this.currentMap.tileToWorldXY(i,j).y,"movementIndicator")}
+
+  //     if (i >= (selected.xPos+selected.stats.currentAP)){continue}
+  //     else {fillStack.push([i+1,j])}
+  //     if (i <= (selected.xPos-selected.stats.currentAP)){continue}
+  //     else {fillStack.push([i-1,j])}
+  //     if (j >= (selected.yPos+selected.stats.currentAP)){continue}
+  //     else {fillStack.push([i,j+1])}
+  //     if (j <= (selected.yPos-selected.stats.currentAP)){continue}
+  //     else {fillStack.push([i,j-1])}
+
+      
+  //   }
+    
+  // }
+
+  getAdjacentTiles(tile,array){
+    
+      array.push(
+                this.currentMap.getTileAt(tile.x-1,tile.y,true,"floorLayer"),
+                this.currentMap.getTileAt(tile.x+1,tile.y,true,"floorLayer"),
+                this.currentMap.getTileAt(tile.x,tile.y-1,true,"floorLayer"),
+                this.currentMap.getTileAt(tile.x,tile.y+1,true,"floorLayer"),
+                )    
+}
+
+  selectGobbo(target,xPos,yPos){
+    let adjTileArray = []
+    let ap = target.stats.currentAP
+   
+    for (let n = 0; n < 4 ; n++){
+      let tileLeft = this.currentMap.getTileAt(xPos-n,yPos,true,"floorLayer")
+      let tileRight = this.currentMap.getTileAt(xPos+n,yPos,true,"floorLayer")
+      let tileUp = this.currentMap.getTileAt(xPos,yPos-n,true,"floorLayer")
+      let tileDown = this.currentMap.getTileAt(xPos,yPos+n,true,"floorLayer")
+    
+      this.getAdjacentTiles(tileLeft,adjTileArray)
+      this.getAdjacentTiles(tileRight,adjTileArray)
+      this.getAdjacentTiles(tileUp,adjTileArray)
+      this.getAdjacentTiles(tileDown,adjTileArray)
     }
+    
+    for (let m = 0; m < adjTileArray.length; m++){
+      adjTileArray[m].properties.movementOverlay = true
+      this.add.image(this.currentMap.tileToWorldXY(adjTileArray[m].x,adjTileArray[m].y).x,this.currentMap.tileToWorldXY(adjTileArray[m].x,adjTileArray[m].y).y,"movementIndicator")
+    }
+    console.log(adjTileArray)
+  }
+
+  // getAdjacentTiles(tile,target){
+  //   //console.log(tile)
+  //   //console.log('tile at' + toString(tile.x) + ', ' + toString(tile.y))
+  //   let ap = target.stats.currentAP
+  //   if (tile.x > 0 && tile.x < this.currentMap.width && tile.y > 0 && tile.y < this.currentMap.height){
+  //     if ( 
+  //     this.currentMap.getTileAt(tile.x-1,tile.y,true,"floorLayer").properties.movementOverlay != true){
+  //      let tileLeft = this.currentMap.getTileAt(tile.x-1,tile.y,true,'floorLayer')
+  //      console.log(tileLeft)
+  //     }
+  //     if ( 
+  //     this.currentMap.getTileAt(tile.x,tile.y-1,true,"floorLayer").properties.movementOverlay != true){
+  //       let tileUp = this.currentMap.getTileAt(tile.x,tile.y-1,true,'floorLayer')
+  //       console.log(tileUp)
+  //     }
+  //     if ( 
+  //     this.currentMap.getTileAt(tile.x+1,tile.y,true,"floorLayer").properties.movementOverlay != true){
+  //       let tileRight = this.currentMap.getTileAt(tile.x+1,tile.y,true,'floorLayer')
+  //       console.log(tileRight)
+  //     }
+  //     if ( 
+  //     this.currentMap.getTileAt(tile.x,tile.y+1,true,"floorLayer").properties.movementOverlay != true){
+  //       let tileDown = this.currentMap.getTileAt(tile.x,tile.y+1,true,'floorLayer')
+  //       console.log(tileDown)
+  //       }
+  //     }
+      
+      
+      
+      
+
+  //     }
+    
+  
+
+  // // Insanely poorly designed method of displaying where a goblin can move
+  // // based 1:1 on their 'ap'
+  // selectGobbo(target) {
+    
+  //   let startTile = this.currentMap.getTileAt(target.xPos,target.yPos,true,'floorLayer')
+  //   let arrayArray = [this.getAdjacentTiles(startTile,target)]
+
+  //   this.movementGrid = this.add.renderTexture(0, 0, 32, 64).setInteractive();
+
+  //   for (let i = 0; i < target.stats.currentAP*8; i++){
+  //     for (let k = 0; k < 4; k++){
+  //       if (arrayArray[i][k].x > 0 && arrayArray[i][k].x < 19 && arrayArray[i][k].y > 0 && arrayArray[i][k].y < 14){
+  //         arrayArray.push(this.getAdjacentTiles(arrayArray[i][k],target))
+  //         arrayArray[i][k].properties.movementOverlay = true  
+  //       if (arrayArray[i][k].properties.movementOverlay == true){
+  //         this.add.image(this.currentMap.tileToWorldXY(arrayArray[i][k].x,arrayArray[i][k].y).x,this.currentMap.tileToWorldXY(arrayArray[i][k].x,arrayArray[i][k].y).y,"movementIndicator")
+  //       }
+  //     }}
+  //   }
+
+  //   console.log(arrayArray)
+  //   }
+  
+    
+
+  // selectGobbo(target) {
+  //   let ap = target.stats.currentAP
+  //   let startTile = this.currentMap.getTileAt(target.xPos,target.yPos,true,'floorLayer')
+  //   let arrayArray = [this.getAdjacentTiles(startTile)]
+
+  //   this.movementGrid = this.add.renderTexture(0, 0, 32, 64).setInteractive();
+
+  //   for (let i = 0; i < (ap*7); i++){
+  //     for (let n = 0; n < 4; n++){
+  //         arrayArray.push(this.getAdjacentTiles(arrayArray[i][n]))
+          
+  //     }
+  //   }
+  //   console.log(arrayArray)
+  //   for (let n = 0; n < arrayArray.length; n++){
+  //     for (let m = 0; m < 4; m++){
+  //       arrayArray[n][m].properties.movementOverlay = true
+  //       // console.log(arrayArray[n][m])
+  //     }
+  //   }
+  // }
+    
+
+    // this.movementGrid.draw(this.add.image(
+    //   this.currentMap.tileToWorldXY(arrayArray[i][n].x,arrayArray[i][n].y).x,
+    //   this.currentMap.tileToWorldXY(arrayArray[i][n].x,arrayArray[i][n].y).y,
+    //   "movementIndicator"
+    // ))
+
+
+
+    // for (let k = 0; k < arrayArray.length; k++){
+    //   for (let j = 0; j < 4; j++){
+    //     this.movementGrid.draw(this.add.image(
+    //       this.currentMap.tileToWorldXY(arrayArray[k][j].x,arrayArray[k][j].y).x,
+    //       this.currentMap.tileToWorldXY(arrayArray[k][j].x,arrayArray[k][j].y).y,
+    //       "movementIndicator"
+    //     ))
+    //   }
+    // }
+
+
+
+
+    // for (let apleft = ap; apleft > 0; apleft--){
+    //   for (let i = 0; i < 4; i++){
+    //     let newArray = this.getAdjacentTiles(startArray[i])
+        
+    //     this.movementGrid.draw(this.add.image(
+    //       this.currentMap.tileToWorldXY(startArray[i].x,startArray[i].y).x,
+    //       this.currentMap.tileToWorldXY(startArray[i].x,startArray[i].y).y,
+    //       "movementIndicator"))
+
+          
+          
+    //   }
+    // }
+    
+
+
+      // for (let i = 0; i < this.currentMap.width; i++){
+      //   for (let j = 0; j < this.currentMap.height; j++){
+      //     let tile = this.currentMap.getTileAt(i,j,true,'floorLayer')
+      //     let wall = this.currentMap.getTileAt(i,j,true,'wallLayer')
+          
+
+                      
+      //       if (tile.x <= (target.xPos + ap) &&
+      //           tile.x >= (target.xPos - ap) &&
+      //           tile.y <= (target.yPos + ap) &&
+      //           tile.y >= (target.yPos - ap) &&
+      //           tile.properties.occupied != true &&
+      //           tile.properties.debug != true &&
+      //           wall.properties.occupied != true
+
+      //           ){
+      //             console.log(this.getAdjacentTiles(startTile))
+      //             //console.log(this.currentMap.getTileAt(i,j,false,'floorLayer'))
+      //             this.movementGrid.draw(this.add.image(this.currentMap.tileToWorldXY(i,j).x,this.currentMap.tileToWorldXY(i,j).y,"movementIndicator"))
+      //       }
+      //   }
+      // }  
+    // target.selected = true;
+    // }
 
   getTileBelowCursor(){
     let tile = this.currentMap.getTileAt(
@@ -295,7 +512,9 @@ export class combatUI extends Phaser.Scene {
 
 
     this.input.on("pointerdown", () => console.log(this.getTileBelowCursor()))
-    this.input.on("pointerdown", () => this.selectGobbo(this.getTileBelowCursor().properties.contains));
+    this.input.on("pointerdown", () => this.selectGobbo(this.getTileBelowCursor().properties.contains,
+    this.getTileBelowCursor().properties.contains.xPos,
+    this.getTileBelowCursor().properties.contains.yPos));
 
     //this.input.on("pointerdown", () => this.movementConfirm(this.chung));
 
@@ -353,6 +572,9 @@ export class combatUI extends Phaser.Scene {
         this.worldPointer.y + 16,
         true
       );
+      
+        
+      
   
   
   }

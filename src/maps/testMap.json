@@ -136,16 +136,32 @@
                          "name":"occupied",
                          "type":"bool",
                          "value":false
-                        }]
+                        },
+                        {
+                            "name":"movementOverlay",
+                            "type":"bool",
+                            "value":false
+                            }]
                 }, 
                 {
                  "id":1,
                  "properties":[
-                        {
-                         "name":"debug",
-                         "type":"bool",
-                         "value":true
-                        }]
+                     {
+                            "name":"apcost",
+                            "type":"int",
+                            "value":1
+                           }, 
+                            {
+                            "name":"debug",
+                            "type":"bool",
+                            "value":true
+                            },
+                             {
+                            "name":"movementOverlay",
+                            "type":"bool",
+                            "value":false
+                            }
+                     ]
                 }],
          "tilewidth":64
         }],
