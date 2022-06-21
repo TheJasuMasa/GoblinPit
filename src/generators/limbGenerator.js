@@ -1,27 +1,33 @@
+const humanoid = {
+  head: ["neck", "lEye", "rEye", "nose", "jaw", "tongue"],
+  lEye: ["head"],
+  rEye: ["head"],
+  nose: ["head"],
+  jaw: ["head"],
+  tongue: ["head"],
+  neck: ["torso"],
+  torso: ["neck", "abdomen", "lArm", "rArm"],
+  lArm: ["torso"],
+  rArm: ["torso"],
+  abdomen: ["lLeg", "rLeg"],
+  lLeg: ["abdomen"],
+  rLeg: ["abdomen"],
+};
+
 class Graph {
   constructor(pattern) {
     this.pattern = pattern;
-    this.matrix = makeAdjMatrix(this.pattern);
+    this.nodes = Object.keys(pattern);
+    this.matrix = this.makeAdjMatrix(this.pattern);
   }
 
-  makeAdjMatrix(vertices, edges) {
+  makeAdjMatrix(pattern) {
     const yArray = [];
-    vertices.forEach((i) => {
+    this.nodes.forEach((i) => {
       const xArray = [];
-      vertices.forEach((j) => {
-        if (
-          edges.some(
-            (edge) =>
-              (edge[0] === i && edge[1] === j) ||
-              (edge[0] === j && edge[1] === i)
-          )
-        ) {
-          xArray.push(1);
-        } else {
-          xArray.push(0);
-        }
+      this.nodes.forEach((j) => {
+        pattern[j].includes(i) ? xArray.push(1) : xArray.push(0);
       });
-      console.log(xArray);
       yArray.push(xArray);
     });
     return yArray;
@@ -32,11 +38,13 @@ class Graph {
     adjArray[vertices.indexOf(edge2)][vertices.indexOf(edge1)] = 1;
   }
 
-  checkAdj(edge1, edge2, vertices, adjArray) {
-    if (adjArray[vertices.indexOf(edge1)][vertices.indexOf(edge2)] === 1) {
+  checkAdj(edge1, edge2) {
+    if (
+      this.matrix[this.nodes.indexOf(edge1)][this.nodes.indexOf(edge2)] === 1
+    ) {
       return true;
     } else if (
-      adjArray[vertices.indexOf(edge2)][vertices.indexOf(edge1)] === 1
+      this.matrix[this.nodes.indexOf(edge2)][this.nodes.indexOf(edge1)] === 1
     ) {
       return true;
     } else {
@@ -44,12 +52,3 @@ class Graph {
     }
   }
 }
-
-//   const arrayTown = makeAdjArray(limbArray, arraySeed);
-//   checkAdj("head", "torso", limbArray, arrayTown);
-//   limbArray.forEach((i) => {
-//     limbArray.forEach((j) => {
-//       console.log(i, j);
-//       console.log(checkAdj(i, j, limbArray, arrayTown));
-//     });
-//   });

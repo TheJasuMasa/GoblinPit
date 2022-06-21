@@ -3,7 +3,7 @@ import { v4 as uuid } from "uuid";
 import { generateName } from "./generators/nameGenerator";
 
 export class Goblin {
-  constructor(stats, limbDefs, bodySprite, headSprite, [xPos, yPos], selected) {
+  constructor(stats, limbDefs, bodySprite, headSprite, [xPos, yPos]) {
     this.id = uuid();
     this.name = generateName("goblin");
     this.stats = stats
