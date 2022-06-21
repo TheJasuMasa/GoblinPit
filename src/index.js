@@ -4,6 +4,8 @@ import { TitleScreen } from "./scenes/TitleScreen";
 import { RandBattle } from "./scenes/RandBattle";
 import { combatUI } from "./scenes/combatUI";
 import OutlinePipelinePlugin from 'phaser3-rex-plugins/plugins/outlinepipeline-plugin.js';
+import CursorAtBoundPlugin from 'phaser3-rex-plugins/plugins/cursoratbound-plugin.js';
+import MouseWheelToUpDownPlugin from 'phaser3-rex-plugins/plugins/mousewheeltoupdown-plugin.js'
 
 const config = {
   type: Phaser.AUTO,
@@ -29,7 +31,18 @@ const config = {
         key: 'rexOutlinePipeline',
         plugin: OutlinePipelinePlugin,
         start: true
-    }]
+            },
+            {
+        key: 'rexCursorAtBound',
+        plugin: CursorAtBoundPlugin,
+        start: true
+            },
+            {
+        key: 'rexMouseWheelToUpDown',
+        plugin: MouseWheelToUpDownPlugin,
+        start: true
+            }
+          ]
   },
 };
 

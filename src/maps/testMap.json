@@ -3,8 +3,7 @@
     {
      "export":
         {
-         "format":"json",
-         "target":"testMap.json"
+         "format":"json"
         }
     },
  "height":15,
@@ -13,19 +12,19 @@
         {
          "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
             2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
-            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+            3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 2, 2, 2, 2,
+            3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4, 2,
+            3, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 3, 2, 2, 2, 4, 3, 4, 2,
+            3, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2, 2, 2, 3, 4, 4,
+            3, 2, 3, 2, 2, 3, 2, 2, 2, 3, 2, 2, 2, 4, 2, 2, 4, 3, 4, 4,
+            3, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2, 2, 4, 4, 4, 4, 4, 4, 4,
+            3, 2, 3, 2, 2, 3, 2, 2, 3, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4,
+            3, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4,
+            3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4,
+            3, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 3, 3, 4, 4, 4, 4, 4,
+            3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4,
+            3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4,
+            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 4, 4, 4, 4, 4, 4],
          "height":15,
          "id":1,
          "name":"floorLayer",
@@ -55,6 +54,8 @@
          "height":15,
          "id":2,
          "name":"wallLayer",
+         "offsetx":0,
+         "offsety":-38,
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
@@ -83,7 +84,7 @@
          "tileoffset":
             {
              "x":32,
-             "y":48
+             "y":50
             },
          "tiles":[
                 {
@@ -98,35 +99,35 @@
          "tilewidth":64
         }, 
         {
-         "columns":2,
+         "columns":3,
          "firstgid":2,
          "image":"..\/..\/fings\/assetz\/tiles\/tileBoi.png",
-         "imageheight":32,
-         "imagewidth":128,
+         "imageheight":38,
+         "imagewidth":192,
          "margin":0,
          "name":"tiles",
          "spacing":0,
-         "tilecount":2,
-         "tileheight":32,
+         "tilecount":3,
+         "tileheight":38,
          "tileoffset":
             {
              "x":32,
-             "y":16
+             "y":18
             },
          "tiles":[
                 {
                  "id":0,
                  "properties":[
                         {
-                         "name":"apCost",
-                         "type":"int",
-                         "value":1
-                        },
-                        {
                          "name":"APremaining",
                          "type":"int",
                          "value":0
-                        },  
+                        }, 
+                        {
+                         "name":"apCost",
+                         "type":"int",
+                         "value":1
+                        }, 
                         {
                          "name":"contains",
                          "type":"object",
@@ -138,38 +139,69 @@
                          "value":false
                         }, 
                         {
+                         "name":"movementOverlay",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
                          "name":"occupied",
                          "type":"bool",
                          "value":false
-                        },
-                        {
-                            "name":"movementOverlay",
-                            "type":"bool",
-                            "value":false
-                            }]
+                        }]
                 }, 
                 {
                  "id":1,
                  "properties":[
-                     {
-                     "name":"apCost",
-                     "type":"int",
-                     "value":100
-                     },
-                     {
-                     "name":"APremaining",
-                     "type":"int",
-                     "value":0
-                     }, 
-                     {
-                     "name":"debug",
-                     "type":"bool",
-                     "value":true
-                     }
-       
-
-                     ]
-                }],
+                        {
+                         "name":"APremaining",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"apCost",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"debug",
+                         "type":"bool",
+                         "value":true
+                        }]
+                },
+                {
+                "id":2,
+                "properties":[
+                       {
+                        "name":"APremaining",
+                        "type":"int",
+                        "value":0
+                       }, 
+                       {
+                        "name":"apCost",
+                        "type":"int",
+                        "value":1
+                       }, 
+                       {
+                        "name":"contains",
+                        "type":"object",
+                        "value":0
+                       }, 
+                       {
+                        "name":"debug",
+                        "type":"bool",
+                        "value":false
+                       }, 
+                       {
+                        "name":"movementOverlay",
+                        "type":"bool",
+                        "value":false
+                       }, 
+                       {
+                        "name":"occupied",
+                        "type":"bool",
+                        "value":false
+                       }]
+                        } ],
          "tilewidth":64
         }],
  "tilewidth":64,

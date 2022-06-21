@@ -56,7 +56,7 @@ export class RandBattle extends Phaser.Scene {
     
     
     // Increases the vision level
-    this.cameras.main.zoom = 2;
+    this.cameras.main.zoom = 1;
 
     //// ----- TILE MARKER ----- ////
     this.tileMarker = this.add.image(0, 0, "tileMarker");
