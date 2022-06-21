@@ -48,10 +48,10 @@ export class RandBattle extends Phaser.Scene {
     // Defines the tileset images and aligns their keys for the map
     this.tileset = this.currentMap.addTilesetImage("tiles", "PreTiles");
     this.tileset2 = this.currentMap.addTilesetImage("walls", "PreWalls");
-    
+  
     // Defines the layers and aligns their keys with tilesets
     this.layer1 = this.currentMap.createLayer("floorLayer", [this.tileset], 0, 0);
-    this.layer2 = this.currentMap.createLayer("wallLayer", [this.tileset2], 0, 0);
+    this.layer2 = this.currentMap.createLayer("wallLayer", [this.tileset2, this.tileset], 0, 0);
     this.currentMap.setLayer(this.layer1)
     
     
