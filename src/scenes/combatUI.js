@@ -203,9 +203,6 @@ export class combatUI extends Phaser.Scene {
     }
   }
 
-  // Updates a ghost image of the selected goblin for movement
-
-
   // Keyboard movement function
   moveSprite(direction, target) {
     if (direction == "left" && target.xPos - 1 >= 0) {
@@ -333,6 +330,8 @@ export class combatUI extends Phaser.Scene {
   }
 
   create() {
+    
+
     this.isoGob = this.add.image(288,280,'isoGob').setScale(1.25)
     this.input.mousePointer.motionFactor = 0.5;
     this.input.pointer1.motionFactor = 0.5;
@@ -348,7 +347,7 @@ export class combatUI extends Phaser.Scene {
 
     // Pulls the data for the map created in RandBattle to be used here
     this.currentMap = this.registry.get("currentMap");
-
+    
     // Actually a list of all layers for use with various functions
     this.tilesetList = ['floorLayer','wallLayer','hillLayer','hillLayerBehind']
 
@@ -581,7 +580,6 @@ export class combatUI extends Phaser.Scene {
             entityList[j].spritesList[k].x = this.currentMap.tileToWorldXY(tile.x,tile.y).x
             entityList[j].spritesList[k].y = (this.currentMap.tileToWorldXY(tile.x,tile.y).y - tile.properties.spriteOffset - 18)  
             if (entityList[j].selected === true && this.getTileBelowCursor() != null && this.getTileBelowCursor().properties.movementOverlay===true){
-    
               this.shadowBody.x = this.currentMap.tileToWorldXY(
                 this.getTileBelowCursor().x, this.getTileBelowCursor().y).x
               this.shadowBody.y = this.currentMap.tileToWorldXY(
@@ -590,6 +588,15 @@ export class combatUI extends Phaser.Scene {
                 this.getTileBelowCursor().x, this.getTileBelowCursor().y).x
               this.shadowHead.y = this.currentMap.tileToWorldXY(
                 this.getTileBelowCursor().x, this.getTileBelowCursor().y).y - (tile.properties.spriteOffset + 18)
+            }
+            if (entityList[j].yPos < this.currentMap.getTileAt(entityList[j].xPos, entityList[j].yPos,false).properties.contains.yPos){
+              entityList[j].spritesList[k].setDepth(2)
+            }
+            if (entityList[j].yPos > this.currentMap.getTileAt(entityList[j].xPos, entityList[j].yPos,false).properties.contains.yPos){
+              entityList[j].spritesList[k].setDepth(4)
+            }
+            else {
+              entityList[j].spritesList[k].setDepth(3)
             }                              
             }
          }
@@ -621,8 +628,12 @@ export class combatUI extends Phaser.Scene {
       }
       else {}
     }
-    if (this.currentMap.getTileAt(this.pointerTile.x,this.pointerTile.y,false,"hillLayerBehind") &&
-        this.currentMap.getTileAt(this.pointerTile.x,this.pointerTile.y,false,"hillLayerBehind") != null){
+    if (this.currentMap.getTileAt(this.pointerTile.x,this.pointerTile.y,false,"wallLayer") == null &&
+        this.currentMap.getTileAt(this.pointerTile.x,this.pointerTile.y+1,false,"wallLayer") != null ||
+        this.currentMap.getTileAt(this.pointerTile.x,this.pointerTile.y,false,"wallLayer") == null &&
+        this.currentMap.getTileAt(this.pointerTile.x+1,this.pointerTile.y,false,"wallLayer") != null ||
+        this.currentMap.getTileAt(this.pointerTile.x,this.pointerTile.y,false,"wallLayer") == null &&
+        this.currentMap.getTileAt(this.pointerTile.x+1,this.pointerTile.y+1,false,"wallLayer") != null){
           this.scene.get("RandBattle").layer2.alpha = 0.5
     }
     else {
