@@ -3,13 +3,14 @@ import { v4 as uuid } from "uuid";
 import { generateName } from "./generators/nameGenerator";
 
 export class Goblin {
-  constructor(stats, limbDefs, bodySprite, headSprite, [xPos, yPos]) {
+  constructor(stats, limbDefs, bodySprite, headSprite, spritesList, [xPos, yPos]) {
     this.id = uuid();
     this.name = generateName("goblin");
     this.stats = stats
     this.limbdefs = limbDefs;
     this.bodySprite = bodySprite;
     this.headSprite = headSprite;
+    this.spritesList = spritesList
     this.xPos = xPos;
     this.yPos = yPos;
     this.selected = false;
