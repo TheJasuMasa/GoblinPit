@@ -24,3 +24,4 @@ export class Entity {
     this.stats = new Stats(goblinStatDefs);
   }
 }
+

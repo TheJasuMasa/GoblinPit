@@ -1,7 +1,6 @@
 import { PATHS } from "../pathDefs";
 import { Goblin } from "../wutGobbosIz";
 import { getRandomIndex } from "../utils/random";
-import { thomsonCrossSectionDependencies } from "mathjs";
 import { RandBattle } from "./RandBattle";
 
 
@@ -31,8 +30,8 @@ export class combatUI extends Phaser.Scene {
         cleverness:3
       },
       "arms innit",
-      Goblin.goblinBodyTypes[getRandomIndex(Goblin.goblinBodyTypes)],
-      Goblin.goblinHeadTypes[getRandomIndex(Goblin.goblinHeadTypes)],
+      `${PATHS.sprites}/gobboBody1SS.png`,
+      `${PATHS.sprites}/gobboHead1SS.png`,
       [],
       [16, 6]
     );
@@ -142,6 +141,20 @@ export class combatUI extends Phaser.Scene {
 
       target.selected = true
 
+      this.shadowBody = this.add
+      .sprite(0, 0, "gobBody1")
+      .setScale(1.25)
+      .setDepth(1)
+      .setAlpha(.5);
+      this.shadowHead = this.add
+      .sprite(0, 0, "gobHead1")
+      .setScale(1.25)
+      .setDepth(1)
+      .setAlpha(.5);
+
+      this.uiCam.ignore(this.shadowBody)
+                .ignore(this.shadowHead)
+
       for (let n = 0; n < this.currentMap.width; n++){
         for (let j = 0; j < this.currentMap.height; j++){
           if (this.currentMap.getTileAt(n,j).properties.movementOverlay === true){
@@ -166,10 +179,12 @@ export class combatUI extends Phaser.Scene {
   }
 
   getTileBelowCursor(){
-    let tile = this.currentMap.getTileAt(
-      this.pointerTile.x,this.pointerTile.y,true,)
-      return tile
-  }
+    if (this.pointerTile.x >= 0 && this.pointerTile.x < this.currentMap.width &&
+        this.pointerTile.y >= 0 && this.pointerTile.y < this.currentMap.height){
+          let tile = this.currentMap.getTileAt(
+            this.pointerTile.x,this.pointerTile.y,false)
+            return tile
+  }}
 
   // Clicking after selecting a gobbo will move it to the tile under the
   // cursor and update it's position. Also displays shadow of potential moves
@@ -182,23 +197,14 @@ export class combatUI extends Phaser.Scene {
       this.clearMovementOverlay()
       this.movementOverlayImageContainer.removeAll(true)
       target.selected = false
+      this.shadowBody.destroy()
+      this.shadowHead.destroy()
       
     }
   }
 
-  // Currently broken
-  // movementShadow(target){
-  //   if (target.selected === true && this.getTileBelowCursor().properties.movementOverlay === true){
-  //     let shadowBody = this.add.image(300,300,
-  //                                 'gobBody1')
-  //     let shadowHead = this.add.image(this.currentMap.tileToWorldXY(this.getTileBelowCursor.x,this.getTileBelowCursor.y).x,
-  //                                 this.currentMap.tileToWorldXY(this.getTileBelowCursor.x,this.getTileBelowCursor.y).y,
-  //                                 'gobBody1')
-  //     shadowBody.x = this.currentMap.tileToWorldXY(this.getTileBelowCursor.x,this.getTileBelowCursor.y).x
-  //     shadowHead.y = this.currentMap.tileToWorldXY(this.getTileBelowCursor.x,this.getTileBelowCursor.y).y
-                                  
-  //   }
-  // }
+  // Updates a ghost image of the selected goblin for movement
+
 
   // Keyboard movement function
   moveSprite(direction, target) {
@@ -206,18 +212,34 @@ export class combatUI extends Phaser.Scene {
       target.xPos -= 1;
       this.currentMap.getTileAt(target.xPos+1,target.yPos,false,'floorLayer').properties.occupied = false
       this.currentMap.getTileAt(target.xPos+1,target.yPos,false,'floorLayer').properties.contains = 0
+      target.spritesList[0].setFlip(true)
+      target.spritesList[1].setFlip(true)
+      this.chungBody.play("gobBody1AnimBack")
+      this.chungHead.play("gobHead1AnimBack")
     } else if (direction == "right" && target.xPos +1 < this.currentMap.width) {
       target.xPos += 1;
       this.currentMap.getTileAt(target.xPos-1,target.yPos,false,'floorLayer').properties.occupied = false
       this.currentMap.getTileAt(target.xPos-1,target.yPos,false,'floorLayer').properties.contains = 0
+      target.spritesList[0].setFlip(false)
+      target.spritesList[1].setFlip(false)
+      this.chungBody.play("gobBody1Anim")
+      this.chungHead.play("gobHead1Anim")
     } else if (direction == "up" && target.yPos -1 >= 0) {
       target.yPos -= 1;
       this.currentMap.getTileAt(target.xPos,target.yPos+1,false,'floorLayer').properties.occupied = false
       this.currentMap.getTileAt(target.xPos,target.yPos+1,false,'floorLayer').properties.contains = 0
+      target.spritesList[0].setFlip(false)
+      target.spritesList[1].setFlip(false)
+      this.chungBody.play("gobBody1AnimBack")
+      this.chungHead.play("gobHead1AnimBack")
     } else if (direction == "down" && target.yPos +1 < this.currentMap.height) {
       target.yPos += 1;
       this.currentMap.getTileAt(target.xPos,target.yPos-1,false,'floorLayer').properties.occupied = false
       this.currentMap.getTileAt(target.xPos,target.yPos-1,false,'floorLayer').properties.contains = 0
+      target.spritesList[0].setFlip(true)
+      target.spritesList[1].setFlip(true)
+      this.chungBody.play("gobBody1Anim")
+      this.chungHead.play("gobHead1Anim")
     }
   }
 
@@ -244,17 +266,31 @@ export class combatUI extends Phaser.Scene {
   }
 
   // Function to consolidate idle animations 
-  animIdle(newKey, spritesheetKey) {
-    let idle = {
-      key: newKey,
-      frames: this.anims.generateFrameNumbers(spritesheetKey, {
-        start: 0,
-        end: 1,
-      }),
-      frameRate: 3,
-      repeat: -1,
-    };
-    this.anims.create(idle);
+  animIdle(newKey, spritesheetKey, back) {
+    if (back === false){
+      let idle = {
+        key: newKey,
+        frames: this.anims.generateFrameNumbers(spritesheetKey, {
+          start: 0,
+          end: 1,
+        }),
+        frameRate: 3,
+        repeat: -1,
+      };
+      this.anims.create(idle);
+    }
+    if (back === true){
+      let idle = {
+        key: newKey,
+        frames: this.anims.generateFrameNumbers(spritesheetKey, {
+          start: 2,
+          end: 3,
+        }),
+        frameRate: 3,
+        repeat: -1,
+      };
+      this.anims.create(idle);
+    }
   }
 
   preload() {
@@ -263,39 +299,41 @@ export class combatUI extends Phaser.Scene {
     this.load.image("movementIndicator", `${PATHS.UI}/tileMarker.png`);
     this.load.audio("mysterySound", `${PATHS.sfx}/wetFart1.wav`);
     this.load.image("tileMarker", `${PATHS.UI}/tileMarkerNew2.png`);
+    this.load.image("isoGob", `${PATHS.sprites}/gobboTest5.png`);
 
     // Temporary place for stitching goblin parts together
     this.load.spritesheet("gobBody1", this.chung.bodySprite, {
       frameWidth: 33,
       frameHeight: 33,
-      endFrame: 2,
+      endFrame: 4,
       margin: 1,
       spacing: 1,
     });
     this.load.spritesheet("gobHead1", this.chung.headSprite, {
       frameWidth: 33,
       frameHeight: 33,
-      endFrame: 2,
+      endFrame: 4,
       margin: 1,
       spacing: 1,
     });
     this.load.spritesheet("gobHead2", this.grung.headSprite, {
       frameWidth: 33,
       frameHeight: 33,
-      endFrame: 2,
+      endFrame: 4,
       margin: 1,
       spacing: 1,
     });
     this.load.spritesheet("gobBody2", this.grung.bodySprite, {
       frameWidth: 33,
       frameHeight: 33,
-      endFrame: 2,
+      endFrame: 4,
       margin: 1,
       spacing: 1,
     });
   }
 
   create() {
+    this.isoGob = this.add.image(288,280,'isoGob').setScale(1.25)
     this.input.mousePointer.motionFactor = 0.5;
     this.input.pointer1.motionFactor = 0.5;
     // Marker for what tile you are hovering over
@@ -332,10 +370,12 @@ export class combatUI extends Phaser.Scene {
 
     // New animation creation function, just need to input your own custom key
     // followed by the spritesheet name. Still have to call .play('newKey') on sprite objects tho
-    this.animIdle("gobBody1Anim", "gobBody1");
-    this.animIdle("gobHead1Anim", "gobHead1");
-    this.animIdle("gobBody2Anim", "gobBody2");
-    this.animIdle("gobHead2Anim", "gobHead2");
+    this.animIdle("gobBody1Anim", "gobBody1", false);
+    this.animIdle("gobHead1Anim", "gobHead1", false);
+    this.animIdle("gobBody1AnimBack", "gobBody1", true);
+    this.animIdle("gobHead1AnimBack", "gobHead1", true);
+    this.animIdle("gobBody2Anim", "gobBody2", false);
+    this.animIdle("gobHead2Anim", "gobHead2", false);
 
     // Actually places the sprite graphics. 
     this.chungBody = this.add
@@ -463,6 +503,7 @@ export class combatUI extends Phaser.Scene {
     this.uiCam.ignore(this.fullSpriteList)
               .ignore(this.movementOverlayImageContainer)
               .ignore(this.tileMarker)
+              .ignore(this.isoGob)
     // Main camera ignores UI elements so they aren't replicated in it.
     this.cameras.main.ignore(this.testButtonImage)
     
@@ -539,11 +580,23 @@ export class combatUI extends Phaser.Scene {
           for (let k = 0; k < entityList[j].spritesList.length; k++){
             entityList[j].spritesList[k].x = this.currentMap.tileToWorldXY(tile.x,tile.y).x
             entityList[j].spritesList[k].y = (this.currentMap.tileToWorldXY(tile.x,tile.y).y - tile.properties.spriteOffset - 18)  
+            if (entityList[j].selected === true && this.getTileBelowCursor() != null && this.getTileBelowCursor().properties.movementOverlay===true){
+    
+              this.shadowBody.x = this.currentMap.tileToWorldXY(
+                this.getTileBelowCursor().x, this.getTileBelowCursor().y).x
+              this.shadowBody.y = this.currentMap.tileToWorldXY(
+                this.getTileBelowCursor().x, this.getTileBelowCursor().y).y - (tile.properties.spriteOffset + 18)
+              this.shadowHead.x = this.currentMap.tileToWorldXY(
+                this.getTileBelowCursor().x, this.getTileBelowCursor().y).x
+              this.shadowHead.y = this.currentMap.tileToWorldXY(
+                this.getTileBelowCursor().x, this.getTileBelowCursor().y).y - (tile.properties.spriteOffset + 18)
+            }                              
+            }
          }
         }
         }
       }
-    } 
+    
 
   updateCursorPosition(layerList){
     // Returns coordinates of cursor relative to camera
@@ -585,8 +638,6 @@ export class combatUI extends Phaser.Scene {
     // Updates and displays tile marker, taking tile height into account
     this.updateCursorPosition(this.tilesetList)
 
-    //this.movementShadow(this.chung)
-      
     // Keeps the cameras updated positions through zoom and panning
     this.cameraController1.update(delta)
     this.cameraController2.update(delta)
