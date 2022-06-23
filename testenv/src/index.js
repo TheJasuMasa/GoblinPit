@@ -5,5 +5,5 @@ const div = document.createElement("div");
 div.textContent = "Sup";
 body.appendChild(div);
 
-const looStats = new Entity();
+const looStats = new Entity("goblin");
 console.log(looStats);

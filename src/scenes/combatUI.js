@@ -261,6 +261,7 @@ export class combatUI extends Phaser.Scene {
     console.log("CHOMP");
     console.log(defender.stats.hp);
   }
+  
 
   // Function to consolidate idle animations 
   animIdle(newKey, spritesheetKey, back) {

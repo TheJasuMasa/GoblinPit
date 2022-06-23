@@ -1,0 +1,3 @@
+class Animations{
+    constructor(spriteObj)
+}

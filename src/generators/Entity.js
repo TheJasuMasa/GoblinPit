@@ -1,9 +1,9 @@
 import { Stats } from "./Stats";
 import { Graph } from "../utils/dataManip/Grid";
 import { Sprites } from "./Sprites"
-import { humanoid } from "../../../src/generators/morphotypeDefs";
-import { goblinStatDefs } from "../../../src/generators/statDefs";
-import { generateName } from "../../../src/generators/nameGenerator";
+import { humanoid } from "./morphotypeDefs";
+import { goblinStatDefs } from "./statDefs";
+import { generateName } from "./nameGeneratosr";
 import { v4 as uuid } from "uuid";
 //Find a more succinct way to handle imports for entity generation
 
