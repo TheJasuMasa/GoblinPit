@@ -1,3 +1,0 @@
-class Animations{
-    constructor(spriteObj)
-}
