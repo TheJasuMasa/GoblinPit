@@ -2,7 +2,7 @@ import { PATHS } from "../pathDefs";
 import { Goblin } from "../wutGobbosIz";
 import { getRandomIndex } from "../utils/random";
 import { RandBattle } from "./RandBattle";
-
+import { Entity } from "../generators/Entity";
 
 export class combatUI extends Phaser.Scene {
   constructor() {
@@ -292,6 +292,10 @@ export class combatUI extends Phaser.Scene {
   }
 
   preload() {
+
+    // Pulls the data for the map created in RandBattle to be used here
+    this.currentMap = this.registry.get("currentMap");
+
     this.gobboDef();
     this.load.image("combatTestButtonBite",`${PATHS.UI}/combatTestButtonBite.png`);
     this.load.image("movementIndicator", `${PATHS.UI}/tileMarker.png`);
@@ -331,7 +335,6 @@ export class combatUI extends Phaser.Scene {
   }
 
   create() {
-    
 
     this.isoGob = this.add.image(288,280,'isoGob').setScale(1.25)
     this.input.mousePointer.motionFactor = 0.5;
@@ -346,9 +349,6 @@ export class combatUI extends Phaser.Scene {
     // Defines the outline plugin for ease of use
     let postFxPlugin = this.plugins.get("rexOutlinePipeline");
 
-    // Pulls the data for the map created in RandBattle to be used here
-    this.currentMap = this.registry.get("currentMap");
-    
     // Actually a list of all layers for use with various functions
     this.tilesetList = ['floorLayer','wallLayer','hillLayer','hillLayerBehind']
 
@@ -558,8 +558,9 @@ export class combatUI extends Phaser.Scene {
       this.cameras.main.scrollY -= y / this.cameras.main.zoom;
       
     });
-
-  
+    
+    
+    
   }
 
   updateEntityPositions(){

@@ -1,4 +1,4 @@
-import { getRandomValue } from "../utils/random";
+import { getRandomIndex } from "../utils/random";
 
 export class Stats {
   constructor(statDefs) {
@@ -43,9 +43,9 @@ export class Stats {
   calculateStat(vl, vr) {
     const operator = Math.random();
     if (operator > 0.5 && operator <= 1) {
-      return vl + getRandomValue(vr);
+      return vl + getRandomIndex(vr);
     } else if (operator <= 0.5) {
-      return vl - getRandomValue(vr);
+      return vl - getRandomIndex(vr);
     }
   }
 

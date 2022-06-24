@@ -1,13 +1,14 @@
-import {getRandomIndex, random} from '../utils/random'
-import * as pathNames from '/spriteDefs'
+import {getRandomIndex} from '../utils/random'
+import { Animations } from './Animations'
+import * as pathNames from './spriteDefs'
 
 export class Sprites{
     constructor(entity){
         this.headPath = null
         this.bodyPath = null
         
-        this.headKey =  "headSp" + entity.id
-        this.bodyKey =  "bodySp" + entity.id
+        this.headKey =  "headSp-" + entity.id
+        this.bodyKey =  "bodySp-" + entity.id
         
         this.spriteList = null
         this.animList = null
@@ -35,35 +36,17 @@ export class Sprites{
             spacing: 1,
           });
     }
-        // createAnim(sceneObj,animKey,pathKey, animType){
-    //     let anim = {
-    //         key: animKey,
-    //         frames: sceneObj.anims.generateFrameNumbers(pathKey, {
-    //             start: this.animFrames[animType][0],
-    //             end: this.animFrames[animType][1],
-    //         }),
-    //         frameRate: 3,
-    //         repeat: -1,
-    //     }
-    //     sceneObj.anims.create(anim)
-    // }
+
+    createSprite(sceneObj,spritesheetKey,animationKey){
+        sceneObj.add
+            .sprite(0,0,spritesheetKey)
+            .play(animationKey)
+            .setInteractive()
+            .setScale(1.25)
+            .setDepth(10)
+    }
 }
     
-
-//   // CREATE STAGE //
-//  this.chungBody = this.add
-//  .sprite(0, 0, "gobBody1")
-//  .play("gobBody1Anim")
-//  .setScale(1.25)
-//  .setInteractive()
-//  .setDepth(1);
-
-// this.chungHead = this.add
-//  .sprite(0, 0, "gobHead1")
-//  .play("gobHead1Anim")
-//  .setScale(1.25)
-//  .setInteractive()
-//  .setDepth(1);
 
  
 
