@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "echo Entering the goblin pit...&& npx nodemon servah.js",
     "build": "echo Da smartuns iz mashin ya code togeva! && webpack",
-    "dev": "echo Da smartuns iz gawpin ya grotty code! && webpack --watch"
+    "dev": "echo Da smartuns iz gawpin ya grotty code! && webpack --watch",
+    "watch": "echo Da gremlinz iz greasin' up the wallz && npx tailwindcss -i ./fings/css/input.css -o ./fings/css/output.css --watch"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +24,7 @@
   },
   "devDependencies": {
     "nodemon": "^2.0.16",
+    "tailwindcss": "^3.1.4",
     "webpack-cli": "^4.9.2"
   }
 }

@@ -5,7 +5,10 @@ warboss - primary branch
 localhost:6969
 
 /**start server**/ 
-npx nodemon servah.js
+npm run watch
 
 /**compile code**/
-npm run build
+npm run dev
+
+/**compile css**/
+npm run watch
