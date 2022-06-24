@@ -26,6 +26,7 @@ export class RandBattle extends Phaser.Scene {
         this.entityList.push(new Entity('goblin'))
         this.entityList[i].sprite.setSpritesheet(this,this.entityList[i].sprite.bodyKey,this.entityList[i].sprite.bodyPath,33,33)
         this.entityList[i].sprite.setSpritesheet(this,this.entityList[i].sprite.headKey,this.entityList[i].sprite.headPath,33,33)
+        console.log(this.entityList[i])
     }
   }
 

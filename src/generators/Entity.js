@@ -21,9 +21,9 @@ export class Entity {
   }
 
   initializeEntity() {
-    //this.morphotype = new Graph(humanoid);
+    this.morphotype = new Graph(humanoid);
     this.name = generateName(this.race);
-    //this.stats = new Stats(goblinStatDefs);
+    this.stats = new Stats(goblinStatDefs);
     this.sprite = new Sprites(this)
   }
 }

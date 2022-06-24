@@ -4,28 +4,28 @@ import * as pathNames from './spriteDefs'
 
 export class Sprites{
     constructor(entity){
-        this.headPath = null
-        this.bodyPath = null
         
-        this.headKey =  "headSp-" + entity.id
-        this.bodyKey =  "bodySp-" + entity.id
+        //Have animation inherit this value
+        this.keyTypes = Object.keys(pathNames[entity.race].types)
         
-        this.spriteList = null
-        this.animList = null
+        this.spriteKeys = []
+        this.spriteList = []
 
         this.animation = new Animations(entity)
         
-        this.initializePaths()
+        this.initializeRandomPaths(entity)
     }
 
-    setRandomPath(obj, type){
-        this[obj] = pathNames.goblin[type][getRandomIndex(pathNames.goblin[type])]
+    //God have mercy on whoever must read this x3
+    initializeRandomPaths(entity){
+        this.keyTypes.forEach((keyType, i) => {
+            this[keyType.slice(0, keyType.length - 1)] = pathNames[entity.race].types[keyType][getRandomIndex(pathNames[entity.race].types[keyType])]
+            this[pathNames[entity.race].typeNames[i] + "Key"] = pathNames[entity.race].typeNames[i] + "sp-" + entity.id
+            this.spriteKeys.push(pathNames[entity.race].typeNames[i] + "sp-" + entity.id)
+        })
     }   
 
-    initializePaths(){
-        this.setRandomPath("headPath", "headTypes")
-        this.setRandomPath("bodyPath", "bodyTypes")
-    }
+
 
     setSpritesheet(sceneObj,key,path,frameWidth,frameHeight){
         sceneObj.load.spritesheet(key, path, {
@@ -38,12 +38,13 @@ export class Sprites{
     }
 
     createSprite(sceneObj,spritesheetKey,animationKey){
-        sceneObj.add
+        let sprite = sceneObj.add
             .sprite(0,0,spritesheetKey)
             .play(animationKey)
             .setInteractive()
             .setScale(1.25)
             .setDepth(10)
+        this.spriteList.push(sprite)
     }
 }
     

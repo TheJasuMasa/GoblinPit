@@ -1,4 +1,4 @@
-import { getRandomIndex } from "../utils/random";
+import { getRandomValue } from "../utils/random";
 
 export class Stats {
   constructor(statDefs) {
@@ -32,7 +32,6 @@ export class Stats {
     const secondaryStatArray = Object.keys(statDefs.second);
     secondaryStatArray.forEach((stat) => {
       const statObj = statDefs.second[stat];
-      console.log(statObj);
       const sum = statObj.dp.reduce((acc, val) => {
         return acc + this[val];
       }, 0);
@@ -43,9 +42,9 @@ export class Stats {
   calculateStat(vl, vr) {
     const operator = Math.random();
     if (operator > 0.5 && operator <= 1) {
-      return vl + getRandomIndex(vr);
+      return vl + getRandomValue(vr);
     } else if (operator <= 0.5) {
-      return vl - getRandomIndex(vr);
+      return vl - getRandomValue(vr);
     }
   }
 
