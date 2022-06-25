@@ -16,7 +16,6 @@ export class Animations {
 
     }
 
-//initializeAnimKeys(){}
 
 generateAnimKey(typeName, animObject, entity){
     let keyArray = []

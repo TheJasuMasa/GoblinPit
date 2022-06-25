@@ -11,6 +11,7 @@ export const goblinStatDefs = {
     grit: { vl: 5, vr: 2, bs: 0 },
   },
   second: {
+    currentAP: {dp: ["skill", "deftness"], mlt: 0.5},
     consciousness: { dp: ["toughness", "stamina"], mlt: 1.5 }, //Tgh/Stam
     morale: { dp: ["grit", "toughness"], mlt: 1.5 }, //Grit/Tgh
     blood: { dp: ["toughness", "strength", "stamina"], mlt: 1.5 }, //Tgh

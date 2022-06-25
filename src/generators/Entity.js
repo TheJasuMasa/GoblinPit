@@ -8,15 +8,16 @@ import { v4 as uuid } from "uuid";
 //Find a more succinct way to handle imports for entity generation
 
 export class Entity {
-  constructor(race) {
+  constructor(race, xPos, yPos) {
     this.id = uuid();
     this.race = race;
     this.name = null;
     this.stats = null;
     this.sprite = null;
     this.morphotype = null;
-    this.xPos = 0
-    this.yPos = 0
+    this.xPos = xPos
+    this.yPos = yPos
+    this.selected = false
     this.initializeEntity();
   }
 

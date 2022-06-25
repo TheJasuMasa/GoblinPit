@@ -8,6 +8,7 @@ export class Stats {
     this.deftness = 0;
     this.toughness = 0;
     this.grit = 0;
+    this.currentAP = 0
     this.consciousness = 0;
     this.morale = 0;
     this.blood = 0;

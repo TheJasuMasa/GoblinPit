@@ -4,8 +4,12 @@ export const nameDefs = {
       {
         firstNameCompounds: [
           "Blat",
+          "Blix",
+          "Blex",
           "Bug",
           "Bok",
+          "Boob",
+          "Chung",
           "Cus",
           "Cram",
           "Dag",
@@ -17,6 +21,7 @@ export const nameDefs = {
           "Flunk",
           "Gak",
           "Gax",
+          "Goob",
           "Gorb",
           "Gort",
           "Grah",

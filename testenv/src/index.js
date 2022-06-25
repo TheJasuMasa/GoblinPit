@@ -8,6 +8,22 @@ const exsanguination = {
   operation: "subtract",
 };
 
+const exhaustion = {
+  name: "exhaustion",
+  stat: "fatigue",
+  magnitude: 1,
+  freq: 0,
+  operation: "subtract",
+};
+
+const torid = {
+  name: "torid",
+  stat: "fatigue",
+  magnitude: 1,
+  freq: 1,
+  operation: "subtract"
+};
+
 const body = document.querySelector("body");
 const div = document.createElement("div");
 div.textContent = "Sup";
