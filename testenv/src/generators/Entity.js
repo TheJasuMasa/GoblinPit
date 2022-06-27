@@ -25,7 +25,6 @@ export class Entity {
     this.morphotype = new Graph(humanoid);
     this.name = generateName(this.race);
     this.stats = new Stats(goblinStatDefs);
-    this.sprite = new Sprites(this);
   }
 
   addAffliction(affliction, stacks) {
