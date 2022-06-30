@@ -1,20 +1,17 @@
-import { Afflcitions } from "./Afflictions";
+import { Afflcitions } from "../afflictions/Afflictions";
 import { Stats } from "./Stats";
-import { Graph } from "../utils/dataManip/Grid";
-import { Sprites } from "./Sprites";
-import { humanoid } from "../../../src/generators/morphotypeDefs";
+import { Graph } from "../../utils/dataManip/Grid";
+import { humanoid } from "./morphotypeDefs";
 import { goblinStatDefs } from "./statDefs";
-import { generateName } from "../../../src/generators/nameGenerator";
+import { generateName } from "./nameGenerator";
 import { v4 as uuid } from "uuid";
 //Find a more succinct way to handle imports for entity generation
 
 export class Entity {
-  constructor(race) {
+  constructor() {
     this.id = uuid();
-    this.race = race;
     this.name = null;
     this.stats = null;
-    this.sprite = null;
     this.morphotype = null;
     this.afflictions = [];
 
@@ -51,5 +48,12 @@ export class Entity {
       affliction.runAfflictionCycle(this.stats);
     });
     console.log(this.afflictions);
+  }
+}
+
+export class Goblin extends Entity {
+  constructor(race) {
+    super();
+    this.race = "goblin";
   }
 }

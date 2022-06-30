@@ -1,4 +1,4 @@
-import { sum, sub } from "../utils/math";
+import { sum, sub } from "../../utils/math";
 
 export class Afflcitions {
   constructor(name, stat, magnitude, freq, operation, stacks) {

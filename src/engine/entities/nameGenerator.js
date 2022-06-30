@@ -1,6 +1,6 @@
-import { getRandomIndex } from "../utils/random";
+import { getRandomIndex } from "../../utils/random";
 import { nameDefs } from "./nameDefs";
-import { makeUppercase } from "../utils/makeUppercase";
+import { makeUppercase } from "../../utils/makeUppercase";
 
 //Generate a random name from an array of names
 // I use the word 'nomen' as to not conflict with the commonly used 'name' in programming

@@ -1,11 +1,9 @@
-import { Cards } from "./generators/Cards";
-import { cards } from "./generators/cardDefs";
+import { Goblin } from "./engine/entities/Entity";
+import { Entity } from "./engine/entities/Entity";
 
-const body = document.querySelector("body");
-const div = document.createElement("div");
-div.textContent = "Sup";
-body.appendChild(div);
+const loo = new Goblin("goblin");
 
-const test = new Cards(cards.bite);
-test.displayFailMessage("Boogie", "Woogie");
+console.log(loo);
 
+console.log(loo instanceof Entity);
+console.log(loo instanceof Goblin);
