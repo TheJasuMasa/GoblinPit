@@ -1,65 +1,11 @@
-import Phaser from "phaser";
-import { debugScene } from "./scenes/debug";
-import { TitleScreen } from "./scenes/TitleScreen";
-import { RandBattle } from "./scenes/RandBattle";
-import { combatUI } from "./scenes/combatUI";
-import OutlinePipelinePlugin from "phaser3-rex-plugins/plugins/outlinepipeline-plugin.js";
-import CursorAtBoundPlugin from "phaser3-rex-plugins/plugins/cursoratbound-plugin.js";
-import MouseWheelToUpDownPlugin from "phaser3-rex-plugins/plugins/mousewheeltoupdown-plugin.js";
+import { Cards } from "./generators/Cards";
+import { cards } from "./generators/cardDefs";
 
-const config = {
-  type: Phaser.AUTO,
-  width: 800,
-  height: 600,
-  parent: "daPit",
-  pixelArt: true,
-  dom: {
-    createContainer: true,
-  },
-  scene: [
-    {
-      preload: preload,
-      create: create,
-      update: update,
-    },
-    TitleScreen,
-    RandBattle,
-    combatUI,
-  ],
-  plugins: {
-    global: [
-      {
-        key: "rexOutlinePipeline",
-        plugin: OutlinePipelinePlugin,
-        start: true,
-      },
-      {
-        key: "rexCursorAtBound",
-        plugin: CursorAtBoundPlugin,
-        start: true,
-      },
-      {
-        key: "rexMouseWheelToUpDown",
-        plugin: MouseWheelToUpDownPlugin,
-        start: true,
-      },
-    ],
-  },
-};
+const body = document.querySelector("body");
+const div = document.createElement("div");
+div.textContent = "Sup";
+body.appendChild(div);
 
-const game = new Phaser.Game(config);
-const bootGame = new debugScene();
+const test = new Cards(cards.bite);
+test.displayFailMessage("Boogie", "Woogie");
 
-function preload() {}
-
-function create() {
-  this.scene.start("titleScreen");
-}
-
-function update() {}
-
-// function update() {}
-// import { Goblin } from "./wutGobbosIz";
-// const pingo = new Goblin("1", "Pingo", "Stronk", "Some's missin'");
-// const gobDiv = document.getElementById("gobbo");
-// gobDiv.textContent = JSON.stringify(pingo, null, 2);

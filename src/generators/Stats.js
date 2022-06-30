@@ -8,7 +8,6 @@ export class Stats {
     this.deftness = 0;
     this.toughness = 0;
     this.grit = 0;
-    this.currentAP = 0
     this.consciousness = 0;
     this.morale = 0;
     this.blood = 0;
@@ -33,6 +32,7 @@ export class Stats {
     const secondaryStatArray = Object.keys(statDefs.second);
     secondaryStatArray.forEach((stat) => {
       const statObj = statDefs.second[stat];
+      console.log(statObj);
       const sum = statObj.dp.reduce((acc, val) => {
         return acc + this[val];
       }, 0);
