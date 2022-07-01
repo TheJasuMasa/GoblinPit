@@ -1,4 +1,4 @@
-export class Graph {
+export class Grid {
   constructor(pattern) {
     this.pattern = pattern;
     this.nodes = Object.keys(pattern);

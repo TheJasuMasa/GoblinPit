@@ -6,3 +6,4 @@ export function getRandomIndex(array) {
 export function getRandomValue(factor) {
   return Math.floor(Math.random() * factor) + 1;
 }
+

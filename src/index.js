@@ -1,9 +1,15 @@
-import { Goblin } from "./engine/entities/Entity";
-import { Entity } from "./engine/entities/Entity";
+import { Goblin } from "./engine/entities/Goblin";
+import { TurnLoop } from "./engine/combat/TurnLoop";
+import * as combat from "./engine/combat/combatLoop";
 
-const loo = new Goblin("goblin");
+const combatantArray = [];
 
-console.log(loo);
+for (let i = 0; i < 8; i++) {
+  combatantArray.push(new Goblin());
+}
 
-console.log(loo instanceof Entity);
-console.log(loo instanceof Goblin);
+let loop = new TurnLoop(combatantArray);
+console.log(combatantArray);
+console.log(loop);
+
+console.log(TurnLoop.getLowestInitiative(loop.turnOrder));

@@ -1,17 +1,25 @@
 import { getRandomValue } from "../../utils/random";
 
+export class Stat {
+  constructor(val) {
+    this.base = val;
+    this.mod = val;
+    this.tmp = val;
+  }
+}
+
 export class Stats {
   constructor(statDefs) {
-    this.strength = 0;
-    this.stamina = 0;
-    this.skill = 0;
-    this.deftness = 0;
-    this.toughness = 0;
-    this.grit = 0;
-    this.consciousness = 0;
-    this.morale = 0;
-    this.blood = 0;
-    this.fatigue = 0;
+    this.might = null;
+    this.stamina = null;
+    this.skill = null;
+    this.deftness = null;
+    this.toughness = null;
+    this.grit = null;
+    this.consciousness = null;
+    this.morale = null;
+    this.blood = null;
+    this.fatigue = null;
 
     this.initializeBaseStats(statDefs);
     this.initializeSecondaryStats(statDefs);
@@ -32,10 +40,10 @@ export class Stats {
     const secondaryStatArray = Object.keys(statDefs.second);
     secondaryStatArray.forEach((stat) => {
       const statObj = statDefs.second[stat];
-      console.log(statObj);
       const sum = statObj.dp.reduce((acc, val) => {
-        return acc + this[val];
+        return acc + this[val].base;
       }, 0);
+      let val = Math.floor(sum * statObj.mlt);
       this.setStat(stat, Math.floor(sum * statObj.mlt));
     });
   }
@@ -50,7 +58,7 @@ export class Stats {
   }
 
   setStat(stat, val) {
-    this[stat] = val;
+    this[stat] = new Stat(val);
   }
 
   getStat(statString) {
