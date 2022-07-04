@@ -1,4 +1,4 @@
-import { Afflcitions } from "../afflictions/Affliction";
+import { Afflcition } from "../afflictions/Affliction";
 import { v4 as uuid } from "uuid";
 import { nameDefs } from "./nameDefs";
 import { getRandomIndex } from "../../utils/random";
@@ -69,6 +69,10 @@ export class Entity {
       affliction.runAfflictionCycle(this.stats);
     });
     console.log(this.afflictions);
+  }
+
+  static getEntityById(array, id) {
+    return array.filter((entity) => entity.id === id)[0];
   }
 
   constructor(name, stats, morphotype) {

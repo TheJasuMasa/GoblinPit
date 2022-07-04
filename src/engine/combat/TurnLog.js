@@ -8,7 +8,7 @@ export class TurnLog {
     this.turnNo = input;
   }
 
-  addEvent(event) {
+  addEvent(input) {
     this.events.push(input);
   }
 }
