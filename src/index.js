@@ -11,4 +11,7 @@ for (let i = 0; i < 8; i++) {
 
 let loop = new TurnLoop(combatantArray);
 
+console.log(combatantArray);
+loop.removeCombatant(combatantArray[3], combatantArray);
+
 console.log(loop);

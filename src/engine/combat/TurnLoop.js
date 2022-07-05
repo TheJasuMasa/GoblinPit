@@ -1,5 +1,6 @@
 import { TurnLog } from "./TurnLog";
 import { Event } from "./Event";
+import { Entity } from "../entities/Entity";
 
 export class TurnLoop {
   //Defines the structure and content of messeges emmited by this class
@@ -17,7 +18,11 @@ export class TurnLoop {
       pattern: [1, 0],
       message: [" is first to go!"],
     },
-    entityPosIsChangedt: {
+    entityPosIsChanged: {
+      pattern: [1, 0, 3, 0, 3, 0],
+      message: ["'s turn is now ", " instead of ", "!"],
+    },
+    entityPosIsChangedDebug: {
       pattern: [1, 0, 3, 0, 3, 0],
       message: ["'s turn is now ", " instead of ", "!"],
     },
@@ -28,6 +33,10 @@ export class TurnLoop {
     turnArranged: {
       pattern: [4, 0],
       message: ["Turn arranged"],
+    },
+    entityRemoved: {
+      pattern: [4, 1, 0],
+      message: [" has been removed from the turn order!"],
     },
   };
 
@@ -62,8 +71,6 @@ export class TurnLoop {
 
   //Arranges the order of an array of combatants who all have the same initiative value based on rank
   static getPriority(array) {
-    console.log("initial length");
-    console.log(array.length);
     let newOrder = [];
     while (array.length !== 0) {
       let lowest = TurnLoop.getLowest(array, "rank");
@@ -74,8 +81,6 @@ export class TurnLoop {
         }
       });
     }
-    console.log("final length");
-    console.log(newOrder.length);
     return newOrder;
   }
 
@@ -89,13 +94,12 @@ export class TurnLoop {
         },
       };
     });
-    console.log("init array");
-    console.log(initArray);
     return initArray;
   }
 
   constructor(combatants) {
     this.turnNo = 0;
+    this.turnOrder = null;
     this.finished = false;
     this.log = new TurnLog(0);
     this.debug = new TurnLog(0);
@@ -103,8 +107,39 @@ export class TurnLoop {
     this.intitializeTurnOrder(combatants);
   }
 
+  //Find the index within the turnOrder of a given combatant
+  getCombatantIndex(combatant) {
+    const idArray = this.turnOrder.map((item) => Object.keys(item)[0]);
+    const combatantIndex = idArray.indexOf(combatant.id);
+    return combatantIndex;
+  }
+
   //Take a combatant outside of the turn order in case of death/incapacitation and emit an event
-  removeCombatant(combatant) {}
+  removeCombatant(combatant, combatantArray) {
+    const idArray = this.turnOrder.map((item) => Object.keys(item)[0]);
+    const idIndex = this.getCombatantIndex(combatant);
+    idArray.forEach((id) =>
+      console.log(Entity.getEntityById(combatantArray, id))
+    );
+    const eventProps = {};
+    Object.assign(eventProps, TurnLoop.events.entityRemoved);
+    eventProps.subjEntity = combatant;
+    this.debug.addEvent(new Event(Event.generateMessage(eventProps)));
+    this.turnOrder.splice(idIndex, 1);
+    idArray.splice(idIndex, 1);
+    for (let i = idIndex; i < this.turnOrder.length; i++) {
+      let shiftedCombatant = Entity.getEntityById(combatantArray, idArray[i]);
+      this.shiftCombatant(shiftedCombatant, i + 1, i + 2);
+    }
+  }
+
+  shiftCombatant(combatant, prevPos, newPos) {
+    const eventProps = {};
+    Object.assign(eventProps, TurnLoop.events.entityPosIsChangedDebug);
+    eventProps.dynValues = [prevPos, newPos];
+    eventProps.subjEntity = combatant;
+    this.debug.addEvent(new Event(Event.generateMessage(eventProps)));
+  }
 
   //Add a combatant to the turn order and emit an event
   addCombatant(combatant) {}
@@ -127,13 +162,13 @@ export class TurnLoop {
       if (pushArray.length > 1) {
         pushArray = TurnLoop.getPriority(pushArray);
       }
-      newOrder.push([...pushArray]);
+      newOrder.push(...pushArray);
     }
     this.turnOrder = newOrder;
     const eventProps = TurnLoop.events.turnArranged;
     eventProps.debugData = {};
     Object.assign(eventProps.debugData, newOrder);
-    this.debug.addEvent(Event.generateMessage(eventProps));
+    this.debug.addEvent(new Event(Event.generateMessage(eventProps)));
   }
 
   intitializeTurnOrder(combatants) {
@@ -144,7 +179,7 @@ export class TurnLoop {
       eventProps.debugData,
       TurnLoop.setInitialTurnOrder(combatants)
     );
-    this.debug.addEvent(Event.generateMessage(eventProps));
+    this.debug.addEvent(new Event(Event.generateMessage(eventProps)));
     this.arrangeTurnOrder();
   }
 }
