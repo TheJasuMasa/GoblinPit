@@ -1,0 +1,14 @@
+/**git branches**/
+warboss - primary branch
+
+/**server port**/
+localhost:6969
+
+/**start server**/ 
+npm run watch
+
+/**compile code**/
+npm run dev
+
+/**compile css**/
+npm run watch

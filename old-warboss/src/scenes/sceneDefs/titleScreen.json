@@ -1,0 +1,62 @@
+[
+  {
+    "name": "cloud1",
+    "type": "img",
+    "path": "cinematic",
+    "filename": "cloud1.png"
+  },
+  {
+    "name": "sky",
+    "type": "img",
+    "path": "cinematic",
+    "filename": "skybox800x600.png"
+  },
+  {
+    "name": "cloud1",
+    "type": "img",
+    "path": "cinematic",
+    "filename": "cloud1.png"
+  },
+  {
+    "name": "dahpit",
+    "type": "img",
+    "path": "cinematic",
+    "filename": "dahpit.png"
+  },
+  {
+    "name": "bHead",
+    "type": "img",
+    "path": "cinematic",
+    "filename": "bHead.png"
+  },
+  {
+    "name": "jHead",
+    "type": "img",
+    "path": "cinematic",
+    "filename": "jHead.png"
+  },
+  {
+    "name": "onlookingBois",
+    "type": "img",
+    "path": "cinematic",
+    "filename": "onlookingBois.png"
+  },
+  {
+    "name": "enterButton",
+    "type": "img",
+    "path": "UI",
+    "filename": "enterButton.png"
+  },
+  {
+    "name": "selector",
+    "type": "img",
+    "path": "UI",
+    "filename": "selector.png"
+  },
+  {
+    "name": "RNB",
+    "type": "audio",
+    "path": "music",
+    "filename": "RNB.mp3"
+  }
+]

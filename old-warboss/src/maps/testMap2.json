@@ -1,0 +1,179 @@
+{ "compressionlevel":-1,
+ "editorsettings":
+    {
+     "export":
+        {
+         "format":"json"
+        }
+    },
+ "height":15,
+ "infinite":false,
+ "layers":[
+        {
+         "data":[2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 2, 2, 2,
+            2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2,
+            2, 3, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2,
+            2, 3, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2,
+            2, 3, 2, 3, 2, 2, 3, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 3, 2, 2, 2, 2, 3, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 3, 2, 3, 2, 2, 3, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 3, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,
+            2, 3, 2, 2, 2, 3, 3, 3, 2, 2, 2, 2, 2, 2, 3, 3, 2, 2, 2, 2,
+            2, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 3, 2, 2, 2, 2, 2,
+            2, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+         "height":15,
+         "id":1,
+         "name":"floorLayer",
+         "offsetx":32,
+         "offsety":16,
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0,
+            1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+            1, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0,
+            1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":15,
+         "id":2,
+         "name":"wallLayer",
+         "offsetx":32,
+         "offsety":48,
+         "opacity":1,
+         "type":"tilelayer",
+         "visible":true,
+         "width":20,
+         "x":0,
+         "y":0
+        }],
+ "nextlayerid":4,
+ "nextobjectid":1,
+ "orientation":"isometric",
+ "renderorder":"right-down",
+ "tiledversion":"1.8.5",
+ "tileheight":32,
+ "tilesets":[
+        {
+         "columns":1,
+         "firstgid":1,
+         "image":"..\/..\/fings\/assetz\/tiles\/wallBoi.png",
+         "imageheight":64,
+         "imagewidth":64,
+         "margin":0,
+         "name":"walls",
+         "spacing":0,
+         "tilecount":1,
+         "tileheight":64,
+         "tileoffset":
+            {
+             "x":32,
+             "y":48
+            },
+         "tiles":[
+                {
+                 "id":0,
+                 "properties":[
+                        {
+                         "name":"occupied",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
+         "tilewidth":64
+        }, 
+        {
+         "columns":2,
+         "firstgid":2,
+         "image":"..\/..\/fings\/assetz\/tiles\/tileBoi.png",
+         "imageheight":32,
+         "imagewidth":128,
+         "margin":0,
+         "name":"tiles",
+         "spacing":0,
+         "tilecount":2,
+         "tileheight":32,
+         "tileoffset":
+            {
+             "x":32,
+             "y":16
+            },
+         "tiles":[
+                {
+                 "id":0,
+                 "properties":[
+                        {
+                         "name":"APremaining",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"apCost",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"contains",
+                         "type":"object",
+                         "value":0
+                        }, 
+                        {
+                         "name":"debug",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"movementOverlay",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"occupied",
+                         "type":"bool",
+                         "value":false
+                        }]
+                }, 
+                {
+                 "id":1,
+                 "properties":[
+                        {
+                         "name":"APremaining",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"apCost",
+                         "type":"int",
+                         "value":100
+                        }, 
+                        {
+                         "name":"debug",
+                         "type":"bool",
+                         "value":true
+                        }]
+                }],
+         "tilewidth":64
+        }],
+ "tilewidth":64,
+ "type":"map",
+ "version":"1.8",
+ "width":20
+}
