@@ -1,4 +1,2 @@
-/node_modules
-/dist
-/fings/assetz
-/testenv/node_modules
+# Godot 4+ specific ignores
+.godot/
