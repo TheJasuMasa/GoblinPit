@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cq0g31rkdutwm"
+path="res://.godot/imported/slash2.wav-a13b8861158a20a630fb5edf0f1cdfb3.sample"
+
+[deps]
+
+source_file="res://Old Assets/audio/SFX/slash2.wav"
+dest_files=["res://.godot/imported/slash2.wav-a13b8861158a20a630fb5edf0f1cdfb3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

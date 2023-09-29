@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://wc1ebb6vvjon"
+path="res://.godot/imported/metalClang1.wav-834e9fa84e2f99a1e82dd91ceb7b9a42.sample"
+
+[deps]
+
+source_file="res://Old Assets/audio/SFX/metalClang1.wav"
+dest_files=["res://.godot/imported/metalClang1.wav-834e9fa84e2f99a1e82dd91ceb7b9a42.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

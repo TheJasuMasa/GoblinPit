@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cs3x0luvsig66"
+path="res://.godot/imported/mew1.wav-c7775460ec567a9565fea4837c84b9ef.sample"
+
+[deps]
+
+source_file="res://Old Assets/audio/SFX/mew1.wav"
+dest_files=["res://.godot/imported/mew1.wav-c7775460ec567a9565fea4837c84b9ef.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

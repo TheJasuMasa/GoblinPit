@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b173e8jbqgu24"
+path="res://.godot/imported/twoSmallWetBlips.wav-709e1d08fd8c6fb46f28ef65c0cd4d43.sample"
+
+[deps]
+
+source_file="res://Old Assets/audio/SFX/twoSmallWetBlips.wav"
+dest_files=["res://.godot/imported/twoSmallWetBlips.wav-709e1d08fd8c6fb46f28ef65c0cd4d43.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

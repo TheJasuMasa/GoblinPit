@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bu6agv4a0vev0"
+path="res://.godot/imported/musketFire1.wav-ceebf5842d77e17aea72dd660efd71f3.sample"
+
+[deps]
+
+source_file="res://Old Assets/audio/SFX/musketFire1.wav"
+dest_files=["res://.godot/imported/musketFire1.wav-ceebf5842d77e17aea72dd660efd71f3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

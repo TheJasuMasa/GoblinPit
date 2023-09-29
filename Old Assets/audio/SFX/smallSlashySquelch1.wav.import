@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ysfllljctt8d"
+path="res://.godot/imported/smallSlashySquelch1.wav-d0120b1cde8a6423bffd6570cc6f414c.sample"
+
+[deps]
+
+source_file="res://Old Assets/audio/SFX/smallSlashySquelch1.wav"
+dest_files=["res://.godot/imported/smallSlashySquelch1.wav-d0120b1cde8a6423bffd6570cc6f414c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
