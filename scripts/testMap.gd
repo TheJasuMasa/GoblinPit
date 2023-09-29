@@ -6,7 +6,7 @@ var validTileMarker = preload("res://scenes/ui/green_tile_marker.tscn")
 
 var gobboList = []
 var neighborTiles = []
-var selected = false
+var selected = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -66,10 +66,10 @@ func _process(delta):
 	#$mouseCursor.position = $TileMap.map_to_local($TileMap.local_to_map(get_global_mouse_position()))
 	iterateLayers($TileMap.local_to_map(get_global_mouse_position()))	
 	
-	if Input.is_action_just_pressed("rightClick") and selected == true:
+	if Input.is_action_just_pressed("rightClick") and selected != null:
 		clearNodes(get_tree().get_nodes_in_group('markers'))
 		neighborTiles = []
-		selected = false
+		selected = null
 
 
 # Iterate through every layer of a given coordinate and in this case currently gets the zHeight of every layer
@@ -80,22 +80,35 @@ func iterateLayers(tileCoords):
 			$mouseCursor.position.x = $TileMap.map_to_local($TileMap.local_to_map(get_global_mouse_position())).x
 			$mouseCursor.position.y = $TileMap.map_to_local($TileMap.local_to_map(get_global_mouse_position())).y - (8*$TileMap.get_cell_tile_data(layer, tileCoords).get_custom_data('zHeight'))
 
+# Called when clicking on a gobbo
 func _on_character_body_2d_input_event(viewport, event, shape_idx):
-	if event is InputEventMouseButton and selected == false:
+	if event is InputEventMouseButton and selected == null:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			selected = true
 			getGobbo($TileMap.local_to_map(event.position))
 
+# Handles movmentment of gobbos by left clicking green neighbor tiles
+func clickTileMarker(viewport, event, shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
+			selected.position = $TileMap.map_to_local($TileMap.local_to_map(event.position))
+			selected = null
+			clearNodes(get_tree().get_nodes_in_group('markers'))
+
+
+# Knows what gobbo you clicked on and generates neighbor tiles for movement surrounding it
 func getGobbo(tile):
 	for gobbo in gobboList:
 		if $TileMap.local_to_map(gobbo.position) == tile:
+			selected = gobbo
+			neighborTiles = []
 			for i in range (0,4):
 				neighborTiles.append(validTileMarker.instantiate())
 				add_child(neighborTiles[i])
 				neighborTiles[i].add_to_group('markers')
 				neighborTiles[i].position = $TileMap.map_to_local($TileMap.get_surrounding_cells($TileMap.local_to_map(gobbo.position))[i])
-
+				neighborTiles[i].input_event.connect(clickTileMarker)
 
 func clearNodes(nodeArray):
 	for node in nodeArray:
-		node.free()
+		node.call_deferred('free')
+		

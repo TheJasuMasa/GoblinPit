@@ -1,8 +1,9 @@
 [gd_scene load_steps=2 format=3 uid="uid://8ga14oena50c"]
 
-[ext_resource type="Texture2D" uid="uid://m57oljfyvm0h" path="res://assests/UI/tileMarker.png" id="1_2f0a1"]
+[ext_resource type="Texture2D" uid="uid://m57oljfyvm0h" path="res://Old Assets/UI/tileMarker.png" id="1_2f0a1"]
 
 [node name="greenTileMarker" type="CharacterBody2D"]
+input_pickable = true
 
 [node name="sprite" type="Sprite2D" parent="."]
 texture = ExtResource("1_2f0a1")
