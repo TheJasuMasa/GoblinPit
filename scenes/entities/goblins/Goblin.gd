@@ -6,6 +6,8 @@ class_name Goblin
 var entity_name: String
 var health: int
 
+
+
 func _init(charName: String):
 	entity_name = charName 
 	health = 50

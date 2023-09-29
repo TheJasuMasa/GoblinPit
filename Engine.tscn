@@ -9,13 +9,10 @@
 script = ExtResource("1_6khkn")
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-visible = false
 stream = ExtResource("3_ucp5w")
 
 [node name="GroundControlToMajorTom" parent="." instance=ExtResource("3_xbrft")]
-visible = false
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(28, 30)
 texture = ExtResource("1_1vrp0")

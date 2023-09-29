@@ -1,8 +1,9 @@
-extends CanvasLayer
-class_name TotemBar
+extends HBoxContainer
 
-func add_totem():
-	%TotemBox.add_totem_child()
+var packedTotemSCN = preload("res://scenes/entities/totems/Totem.tscn")
+
+func add_totem_child():
+	add_child(packedTotemSCN.instantiate())
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

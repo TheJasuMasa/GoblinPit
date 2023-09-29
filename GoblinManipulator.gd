@@ -8,15 +8,25 @@ var windowX = window[0]
 var windowY = window[1]
 var collisionPadding = 10
 
+var packedTotemBarScene = preload("res://scenes/ui/TotemBar.tscn")
+var totemBar = packedTotemBarScene.instantiate()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	var greeblax = Goblin.new("Greeblax")
+	var greeblax = Goblin.new("Greeblax") 
+	add_child(totemBar)
 	greeblax.take_damage(10)	
 	
+
 	print(windowX, windowY)
+	
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if Input.is_action_just_pressed("AddTotem"):
+		totemBar.add_totem()
+		
 		
 	if Input.is_action_pressed("VelociUp"):
 		yVelocity -= .1
