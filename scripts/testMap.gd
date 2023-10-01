@@ -10,6 +10,17 @@ var selected = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
+	######JUSTIN TESTING STUFF#############
+	var greeblax = Goblin.new("Greeblax")
+	var grooblox = Goblin.new("Grooblox")
+	var claw = Totem_Claw.new()
+	
+	
+	claw.attack(greeblax, grooblox)
+	######END JUSTIN TESTING STUFF#############
+	
+	
 	# How one can access custom data on a tile.
 	# print($TileMap.get_cell_tile_data(0,$TileMap.get_used_cells(0)[0]).get_custom_data('zHeight'))
 	

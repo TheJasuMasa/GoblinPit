@@ -1,3 +1,5 @@
+extends Resource
+
 var totemName: String
 var totemDescription:  String
 var damageRange: Dictionary 

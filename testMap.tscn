@@ -1,8 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://bfr0lc4pyvbh5"]
+[gd_scene load_steps=8 format=3 uid="uid://ch88855eiov50"]
 
 [ext_resource type="Texture2D" uid="uid://6lsklnuoiwl8" path="res://Old Assets/tiles/tileBoi.png" id="1_oupcb"]
 [ext_resource type="Script" path="res://scripts/testMap.gd" id="1_td2u4"]
-[ext_resource type="PackedScene" uid="uid://cv5kf4swwjcgg" path="res://scenes/ui/tileMarker.tscn" id="3_4ewxq"]
+[ext_resource type="PackedScene" path="res://scenes/ui/tileMarker.tscn" id="3_4ewxq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tdu1t"]
 resource_name = "tiles-0"

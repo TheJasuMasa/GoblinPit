@@ -8,8 +8,16 @@ var gobboList = []
 var neighborTiles = []
 var selected = false
 
+#JUSITN DOING STUFF HERE = IGNORE
+var greeblax = Goblin.new("Greeblax")
+var grooblox = Goblin.new("Grooblox")
+var claw = Totem_Claw.new()
+#END JUSTIN DOING STUFF HERE
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	
 	# How one can access custom data on a tile.
 	# print($TileMap.get_cell_tile_data(0,$TileMap.get_used_cells(0)[0]).get_custom_data('zHeight'))
 	
