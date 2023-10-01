@@ -8,6 +8,8 @@ var gobboList = []
 var neighborTiles = []
 var selected = null
 
+var packedTotemBarScene = preload("res://scenes/ui/TotemBar.tscn")
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	
@@ -16,6 +18,9 @@ func _ready():
 	var grooblox = Goblin.new("Grooblox")
 	var claw = Totem_Claw.new()
 	
+	var totemBar = packedTotemBarScene.instantiate()
+	add_child(totemBar)
+	totemBar.add_totem()
 	
 	claw.attack(greeblax, grooblox)
 	######END JUSTIN TESTING STUFF#############

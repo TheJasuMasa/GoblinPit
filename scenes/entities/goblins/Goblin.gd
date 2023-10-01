@@ -11,8 +11,8 @@ var health: int
 func _init(charName: String):
 	entity_name = charName 
 	health = 50
-	var totemCollection: Array[Totem] = []
-	var currentTotems: Array[Totem] = []
+	#var totemCollection: Array[Totem] = []
+	#var currentTotems: Array[Totem] = []
 
 func take_damage(amount: int):
 	health -= amount
