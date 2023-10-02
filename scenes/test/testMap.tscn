@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://ch88855eiov50"]
 
-[ext_resource type="Texture2D" uid="uid://6lsklnuoiwl8" path="res://Old Assets/tiles/tileBoi.png" id="1_oupcb"]
-[ext_resource type="Script" path="res://scripts/testMap.gd" id="1_td2u4"]
-[ext_resource type="PackedScene" path="res://scenes/ui/tileMarker.tscn" id="3_4ewxq"]
+[ext_resource type="Script" path="res://scenes/test/testMap.gd" id="1_xo8ox"]
+[ext_resource type="Texture2D" uid="uid://6lsklnuoiwl8" path="res://Old Assets/tiles/tileBoi.png" id="2_hqvqp"]
+[ext_resource type="PackedScene" path="res://scenes/ui/tileMarker.tscn" id="3_jwn5e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tdu1t"]
 resource_name = "tiles-0"
-texture = ExtResource("1_oupcb")
+texture = ExtResource("2_hqvqp")
 texture_region_size = Vector2i(64, 38)
 0:0/0 = 0
 0:0/0/custom_data_0 = 1
@@ -27,7 +27,7 @@ texture_region_size = Vector2i(64, 38)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_k6fo5"]
 resource_name = "tiles-1"
-texture = ExtResource("1_oupcb")
+texture = ExtResource("2_hqvqp")
 texture_region_size = Vector2i(64, 38)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 8)
@@ -59,7 +59,7 @@ texture_region_size = Vector2i(64, 38)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_p44ck"]
 resource_name = "tiles-2"
-texture = ExtResource("1_oupcb")
+texture = ExtResource("2_hqvqp")
 texture_region_size = Vector2i(64, 38)
 0:0/0 = 0
 0:0/0/texture_origin = Vector2i(0, 16)
@@ -102,7 +102,7 @@ sources/1 = SubResource("TileSetAtlasSource_k6fo5")
 sources/2 = SubResource("TileSetAtlasSource_p44ck")
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_td2u4")
+script = ExtResource("1_xo8ox")
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -127,4 +127,4 @@ layer_2/y_sort_origin = 64
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(2359296, 131072, 0, 2293760, 131072, 0, 2228225, 131072, 0, 2293761, 131072, 0, 2359297, 131072, 0, 2424832, 131072, 0, 2490369, 131072, 0, 2555905, 131072, 0, 2490370, 131072, 0, 2424833, 131072, 0, 2555904, 131072, 0, 1900545, 131072, 0, 1900544, 131072, 0, 1835009, 131072, 0, 1966081, 131072, 0, 1376269, 131072, 0, 1441805, 131072, 0, 1507341, 131072, 0, 1441806, 131072, 0, 786440, 131072, 0, 720903, 131072, 0, 786441, 131072, 0, 131072, 131072, 0, 196608, 131072, 0, 131073, 131072, 0, 65536, 131072, 0, 262144, 131072, 0, 262143, 131072, 0, 262145, 131072, 0, 2686980, 131072, 0, 2752516, 131072, 0, 2621444, 131072, 0, 2686979, 131072, 0, 2752517, 131072, 0, 2818052, 131072, 0, 2883589, 131072, 0, 2883588, 131072, 0, 2818053, 131072, 0, 2752518, 131072, 0, 851979, 65538, 0, 917515, 65538, 0, 1048590, 131074, 0, 1114125, 131074, 0)
 
-[node name="mouseCursor" parent="." instance=ExtResource("3_4ewxq")]
+[node name="mouseCursor" parent="." instance=ExtResource("3_jwn5e")]

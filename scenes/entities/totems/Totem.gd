@@ -17,7 +17,6 @@ func _process(delta):
 
 
 func _on_area_2d_mouse_entered():
-	Input.mouse_mode(2)
 	print("Entered")
 	print(global_position)
 	var currentPosition = global_position

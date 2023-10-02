@@ -86,7 +86,5 @@ label_settings = SubResource("LabelSettings_e1ww7")
 position = Vector2(40, 60.5)
 shape = SubResource("RectangleShape2D_jmv17")
 
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
