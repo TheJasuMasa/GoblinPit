@@ -1,7 +1,7 @@
 extends Node2D
 
 # Packs the scene into a variable
-var testGobboScene = preload("res://scenes/entities/goblins/test_gobbo.tscn")
+var testGobboScene = preload("res://scenes/entities/goblins/Goblin.tscn")
 var validTileMarker = preload("res://scenes/ui/green_tile_marker.tscn")
 
 var gobboList = []
@@ -14,8 +14,8 @@ var packedTotemBarScene = preload("res://scenes/ui/TotemBar.tscn")
 func _ready():
 	
 	######JUSTIN TESTING STUFF#############
-	var greeblax = Goblin.new("Greeblax")
-	var grooblox = Goblin.new("Grooblox")
+	var greeblax = Goblin.new("Greeblax", "dummy")
+	var grooblox = Goblin.new("Grooblox", "dummy")
 	var claw = Totem_Claw.new()
 	
 	var totemBar = packedTotemBarScene.instantiate()

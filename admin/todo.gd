@@ -1,27 +1,43 @@
-#Need a map
-	#Map display algorithm
-#Units generated with stats and a name
-#Sprites for units
+#############ROADMAP###########
+
+#Have a camera w/ basic camera controls
+
+#Have a game controller class to handle turn and initiative
+	#Units generated with stats and a name
+	#Detect attack potential
+	#Basic Turn Order
+	#End state check
+	
 #Sprite movement on map
-#Detect attack potential
-#Track stat changes
+	#Debug double stacked entities
+	
+
 #Placeholder Totem
 	#Suuuuuper basic totem functionality (i.e damage hp/defend stuff)
-	#Totem UI functionality (ex click on totem to select, it goes up a bit, and click confirm to do thing)
-#Basic Turn Order
-#End state check
-#Log state of game in a window
+		#Damage is done
+		#Defend and other basic cards not done
+		
+#Totem UI functionality (ex click on totem to select, it goes up a bit, and click confirm to do thing)
+
 
 #UI 
-#Display HP
-#Totem holder area
+	#Log state of game in a window
+		#Object that appends strings to an array, scrolls, and color codes the
+		#output based on team
+	#Display HP
 
+#########END ROADMAP##########
+
+#####TODO#######
 #JUSTIN
-#Set up development environment - GitHub
-#Fuck around with totems codey stuff and maybe also ui
-#Fuck with unit data
+#Finsish up basic totem functionality
+#Combine goblin stuff
+#Begin creation of game control class/functions
+
 
 #BRIAN
-#Map display
-#Unit visual shit
-#Movement
+#Create map metadata layer
+	#Finish z-height offset when highlighting tiles
+#Make camera w/ basic controls (panning/zooming/etc)
+#Perhaps battle log 
+

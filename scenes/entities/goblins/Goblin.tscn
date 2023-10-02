@@ -1,6 +1,24 @@
-[gd_scene load_steps=2 format=3 uid="uid://dw6bsiqxkow58"]
+[gd_scene load_steps=5 format=3 uid="uid://fa5yqlhqxvuo"]
 
-[ext_resource type="Script" path="res://scenes/entities/goblins/Goblin.gd" id="1_i2nwv"]
+[ext_resource type="Script" path="res://scenes/entities/goblins/Goblin.gd" id="1_4kg4l"]
+[ext_resource type="Texture2D" uid="uid://vjxq04a50wlq" path="res://Old Assets/sprites/gobboTest3.png" id="2_ocqci"]
 
-[node name="Goblin" type="Node2D"]
-script = ExtResource("1_i2nwv")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8o3j2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a1y70"]
+size = Vector2(24, 32)
+
+[node name="unitNode" type="CharacterBody2D"]
+z_index = 1
+z_as_relative = false
+input_pickable = true
+script = ExtResource("1_4kg4l")
+
+[node name="sprite" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_8o3j2")
+position = Vector2(3, -16)
+texture = ExtResource("2_ocqci")
+
+[node name="area" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_a1y70")

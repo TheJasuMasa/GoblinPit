@@ -1,16 +1,15 @@
-@icon("res://assests/images/gobbo.png")
+extends CharacterBody2D
 
-extends Node2D
 class_name Goblin
 
 var entity_name: String
 var health: int
+var sprite: String
 
-
-
-func _init(charName: String):
+func _init(charName: String, sprite_path: String):
 	entity_name = charName 
 	health = 50
+	sprite = sprite_path
 	#var totemCollection: Array[Totem] = []
 	#var currentTotems: Array[Totem] = []
 
@@ -26,3 +25,5 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+
