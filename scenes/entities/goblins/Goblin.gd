@@ -4,12 +4,11 @@ class_name Goblin
 
 var entity_name: String
 var health: int
-var sprite: String
 
-func _init(charName: String, sprite_path: String):
+
+func _init(charName: String):
 	entity_name = charName 
 	health = 50
-	sprite = sprite_path
 	#var totemCollection: Array[Totem] = []
 	#var currentTotems: Array[Totem] = []
 

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://bq16h654edjtu"]
+
+[ext_resource type="Texture2D" uid="uid://bun2doywnwdpi" path="res://assets/images/gobbo.png" id="1_1vrp0"]
+[ext_resource type="Script" path="res://GoblinManipulator.gd" id="1_6khkn"]
+[ext_resource type="AudioStream" uid="uid://b2ahib30aj1pi" path="res://assets/sound/wetFart1.wav" id="3_ucp5w"]
+[ext_resource type="PackedScene" uid="uid://cg60mq3yb5f3f" path="res://scenes/entities/goblins/Background.tscn" id="3_xbrft"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_6khkn")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_ucp5w")
+
+[node name="GroundControlToMajorTom" parent="." instance=ExtResource("3_xbrft")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(28, 30)
+texture = ExtResource("1_1vrp0")
