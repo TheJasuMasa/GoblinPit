@@ -4,15 +4,16 @@
 [ext_resource type="Script" path="res://scenes/ui/TotemBox.gd" id="2_7bj45"]
 
 [node name="TotemBar" type="CanvasLayer"]
+offset = Vector2(0, -11.52)
+transform = Transform2D(1, 0, 0, 1, 0, -11.52)
 script = ExtResource("1_erylf")
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
-anchors_preset = 12
-anchor_top = 1.0
+anchor_top = 0.802
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -128.0
+offset_top = 0.303955
 grow_horizontal = 2
 grow_vertical = 0
 
@@ -25,6 +26,11 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_right = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="ColorRect" type="ColorRect" parent="Control/MarginContainer"]
+layout_mode = 2
+color = Color(0, 0, 0, 0.223529)
 
 [node name="TotemBox" type="HBoxContainer" parent="Control/MarginContainer"]
 unique_name_in_owner = true
