@@ -1,0 +1,91 @@
+[gd_scene load_steps=4 format=3 uid="uid://c2f5oyd6wfrna"]
+
+[ext_resource type="Script" path="res://scenes/ui/BattleUI.gd" id="1_pjmiw"]
+[ext_resource type="Script" path="res://scenes/ui/TotemBar.gd" id="2_5uof4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l0bjt"]
+size = Vector2(109, 40)
+
+[node name="BattleUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pjmiw")
+
+[node name="TotemBar" type="CanvasLayer" parent="."]
+script = ExtResource("2_5uof4")
+
+[node name="TurnMetadata" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -71.0
+offset_bottom = 87.0
+grow_horizontal = 0
+
+[node name="CurrentTurn" type="Label" parent="TurnMetadata"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="CurrentPlayer" type="Label" parent="TurnMetadata"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 23.0
+grow_horizontal = 2
+
+[node name="ColorRect" type="ColorRect" parent="TurnMetadata"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.117647)
+
+[node name="EndTurnButton" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -109.0
+offset_top = -40.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="EndTurnButtonBG" type="ColorRect" parent="EndTurnButton"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.8, 0.458824, 0.247059, 1)
+
+[node name="EndTurnButtonText" type="Label" parent="EndTurnButton/EndTurnButtonBG"]
+layout_mode = 0
+offset_left = 20.0
+offset_top = 6.0
+offset_right = 90.0
+offset_bottom = 32.0
+text = "End Turn"
+
+[node name="Area2D" type="Area2D" parent="EndTurnButton"]
+
+[node name="ButtonDetection" type="CollisionShape2D" parent="EndTurnButton/Area2D"]
+position = Vector2(54.5, 20)
+shape = SubResource("RectangleShape2D_l0bjt")
