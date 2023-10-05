@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw6bsiqxkow58"]
+[gd_scene load_steps=4 format=3 uid="uid://cwox0mfhmwkd7"]
 
-[ext_resource type="Script" path="res://scenes/test/JustinTest.gd" id="1_iagw1"]
-[ext_resource type="Texture2D" uid="uid://vjxq04a50wlq" path="res://Old Assets/sprites/gobboTest3.png" id="2_ocqci"]
+[ext_resource type="Texture2D" uid="uid://vjxq04a50wlq" path="res://Old Assets/sprites/gobboTest3.png" id="1_wydk8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8o3j2"]
 
@@ -12,12 +11,11 @@ size = Vector2(24, 32)
 z_index = 1
 z_as_relative = false
 input_pickable = true
-script = ExtResource("1_iagw1")
 
 [node name="sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_8o3j2")
 position = Vector2(3, -16)
-texture = ExtResource("2_ocqci")
+texture = ExtResource("1_wydk8")
 
 [node name="area" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)

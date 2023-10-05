@@ -1,12 +1,13 @@
 extends Node2D
 
 # Packs the scene into a variable
-var testGobboScene = preload("res://scenes/entities/goblins/Goblin.tscn")
+var testGobboScene = preload("res://scenes/entities/goblins/test_gobbo.tscn")
 var validTileMarker = preload("res://scenes/ui/green_tile_marker.tscn")
 
 var gobboList = []
 var neighborTiles = []
 var selected = null
+var metaLayer = []
 
 var packedTotemBarScene = preload("res://scenes/ui/TotemBar.tscn")
 
@@ -14,8 +15,8 @@ var packedTotemBarScene = preload("res://scenes/ui/TotemBar.tscn")
 func _ready():
 	
 	######JUSTIN TESTING STUFF#############
-	var greeblax = Goblin.new("Greeblax", "dummy")
-	var grooblox = Goblin.new("Grooblox", "dummy")
+	var greeblax = Goblin.new("Greeblax")
+	var grooblox = Goblin.new("Grooblox")
 	var claw = Totem_Claw.new()
 	
 	var totemBar = packedTotemBarScene.instantiate()
@@ -47,7 +48,6 @@ func _ready():
 		gobboList[i].input_event.connect(_on_character_body_2d_input_event)
 		
 		
-		
 		# Very verbose, but gets the custom data of a given tile by coordinate
 		#$TileMap.get_cell_tile_data(0,$TileMap.local_to_map(gobboList[i].position)).get_custom_data('contains') = gobboList[i]
 		#print($TileMap.get_cell_tile_data(0,$TileMap.local_to_map(gobboList[i].position)).get_custom_data('contains'))
@@ -60,7 +60,35 @@ func _ready():
 	# Changing the second gobbo's sprite cause why not.
 	testGobbo2.get_node('sprite').texture = load("res://Old Assets/sprites/gobboTest4.png")
 	
-	#iterateLayers(Vector2(10,10))
+
+	
+	# Working on meta data layer
+	for layer in range (0,$TileMap.get_layers_count()):
+		for tile in range (0,$TileMap.get_used_cells(layer).size()):
+			if $TileMap.get_cell_tile_data(layer,$TileMap.get_used_cells(layer)[tile]) != null:
+				if $TileMap.get_cell_tile_data(layer+1,$TileMap.get_used_cells(layer)[tile]) == null:
+					var tilePos = $TileMap.get_used_cells(layer)[tile]
+					var tileHeight = $TileMap.get_cell_tile_data(layer,tilePos).get_custom_data('zHeight')
+					metaLayer.append(Tile.new($TileMap.get_used_cells(layer)[tile],tileHeight,null))
+					print('tilePos -- '+str(tilePos))
+					print('tileHeight -- '+str(tileHeight))
+
+	
+	for tile in metaLayer:
+		print(tile.zHeight)
+		print(tile.position)
+				
+
+
+				
+	
+	# Iterate through every tile on every layer
+	# record highest tile's custom data such as zHeight
+	# create new metadata layer below existing layers
+	# give tile's in meta layer new custome data based on highest tile.
+
+
+
 	
 	# Draws outlines using shaders
 func drawOutline(sprite):
@@ -87,7 +115,6 @@ func _process(delta):
 		neighborTiles = []
 		selected = null
 
-
 # Iterate through every layer of a given coordinate and in this case currently gets the zHeight of every layer
 # Snaps the cursor to the cell under a mouse and increased the height based on the layer's zHeight data
 func iterateLayers(tileCoords):
@@ -100,13 +127,13 @@ func iterateLayers(tileCoords):
 func _on_character_body_2d_input_event(viewport, event, shape_idx):
 	if event is InputEventMouseButton and selected == null:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			getGobbo($TileMap.local_to_map(event.position))
+			getGobbo($TileMap.local_to_map(get_global_mouse_position()))
 
 # Handles movmentment of gobbos by left clicking green neighbor tiles
 func clickTileMarker(viewport, event, shape_idx):
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			selected.position = $TileMap.map_to_local($TileMap.local_to_map(event.position))
+			selected.position = $TileMap.map_to_local($TileMap.local_to_map(get_global_mouse_position()))
 			selected = null
 			clearNodes(get_tree().get_nodes_in_group('markers'))
 
