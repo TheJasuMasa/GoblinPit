@@ -7,6 +7,7 @@ var validTileMarker = preload("res://scenes/ui/green_tile_marker.tscn")
 var gobboList = []
 var neighborTiles = []
 var selected = null
+var metaLayer = []
 
 var packedTotemBarScene = preload("res://scenes/ui/TotemBar.tscn")
 
@@ -59,7 +60,35 @@ func _ready():
 	# Changing the second gobbo's sprite cause why not.
 	testGobbo2.get_node('sprite').texture = load("res://Old Assets/sprites/gobboTest4.png")
 	
-	#iterateLayers(Vector2(10,10))
+
+	
+	# Working on meta data layer
+	for layer in range (0,$TileMap.get_layers_count()):
+		for tile in range (0,$TileMap.get_used_cells(layer).size()):
+			if $TileMap.get_cell_tile_data(layer,$TileMap.get_used_cells(layer)[tile]) != null:
+				if $TileMap.get_cell_tile_data(layer+1,$TileMap.get_used_cells(layer)[tile]) == null:
+					var tilePos = $TileMap.get_used_cells(layer)[tile]
+					var tileHeight = $TileMap.get_cell_tile_data(layer,tilePos).get_custom_data('zHeight')
+					metaLayer.append(Tile.new($TileMap.get_used_cells(layer)[tile],tileHeight,null))
+					print('tilePos -- '+str(tilePos))
+					print('tileHeight -- '+str(tileHeight))
+
+	
+	for tile in metaLayer:
+		print(tile.zHeight)
+		print(tile.position)
+				
+
+
+				
+	
+	# Iterate through every tile on every layer
+	# record highest tile's custom data such as zHeight
+	# create new metadata layer below existing layers
+	# give tile's in meta layer new custome data based on highest tile.
+
+
+
 	
 	# Draws outlines using shaders
 func drawOutline(sprite):
