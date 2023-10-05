@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://fa5yqlhqxvuo"]
 
-[ext_resource type="Script" path="res://scenes/entities/goblins/Goblin.gd" id="1_4kg4l"]
+[ext_resource type="Script" path="res://scenes/test/JustinTest.gd" id="1_iagw1"]
 [ext_resource type="Texture2D" uid="uid://vjxq04a50wlq" path="res://Old Assets/sprites/gobboTest3.png" id="2_ocqci"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8o3j2"]
@@ -12,7 +12,7 @@ size = Vector2(24, 32)
 z_index = 1
 z_as_relative = false
 input_pickable = true
-script = ExtResource("1_4kg4l")
+script = ExtResource("1_iagw1")
 
 [node name="sprite" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_8o3j2")
