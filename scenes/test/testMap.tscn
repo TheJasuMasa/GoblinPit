@@ -1,10 +1,10 @@
 [gd_scene load_steps=10 format=3 uid="uid://ch88855eiov50"]
 
 [ext_resource type="Script" path="res://scenes/test/testMap.gd" id="1_xo8ox"]
-[ext_resource type="Texture2D" uid="uid://6lsklnuoiwl8" path="res://Old Assets/tiles/tileBoi.png" id="2_hqvqp"]
+[ext_resource type="Texture2D" uid="uid://6lsklnuoiwl8" path="res://assets/tiles/tileBoi.png" id="2_hqvqp"]
 [ext_resource type="PackedScene" uid="uid://cv5kf4swwjcgg" path="res://scenes/ui/tileMarker.tscn" id="3_jwn5e"]
 [ext_resource type="Script" path="res://Camera.gd" id="4_xxekr"]
-[ext_resource type="Texture2D" uid="uid://jms3dk81ft13" path="res://Old Assets/sprites/gobboTest5.png" id="5_q85n6"]
+[ext_resource type="Texture2D" uid="uid://jms3dk81ft13" path="res://assets/sprites/gobboTest5.png" id="5_q85n6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tdu1t"]
 resource_name = "tiles-0"
